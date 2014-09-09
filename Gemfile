@@ -13,12 +13,11 @@ gem 'aws-sdk'
 gem 'draper', '~> 1.3'
 gem 'stripe'
 gem 'heroku_secrets', github: 'alexpeattie/heroku_secrets'
-
+gem 'pg'
 # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
 gem 'spring',        group: :development
 
 group :production do
-	gem 'pg'
 	gem 'rails_12factor'
 end
 
@@ -29,7 +28,6 @@ end
 
 group :development, :test do
   gem 'spring-commands-rspec'
-	gem 'sqlite3'
 	gem 'rspec-rails'
 	gem 'capybara'
 	gem 'shoulda-matchers', require: false
