@@ -9,7 +9,7 @@ describe 'Logging in' do
                   last_name:  'Michael',
                   role: "borrower"}
 
-  context 'as a Guest' do
+  context 'as a borrower' do
     it 'logs in as a borrower successfully' do
       login
       expect(page).to_not have_content 'Login'
@@ -27,7 +27,7 @@ describe 'Logging in' do
     end
   end
 
-  context 'as an Authenticated User' do
+  context 'as a borrower' do
     it 'logs out' do
       login
       click_on 'Logout'

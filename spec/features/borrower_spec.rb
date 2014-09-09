@@ -76,9 +76,10 @@ describe 'borrower experience' do
 
     let(:order) { Order.create(user_id: 1, order_type: 'pickup', payment_type: 'cash', address_id: 7, status: "ordered") }
     let(:user2) { User.create(first_name: "Nan", last_name: "Hass", email: "yourmommy@aol.com",
-                  password: "password", password_confirmation: "password", role: :admin, nickname: "Nandozer") }
+                  password: "password", password_confirmation: "password", role: "borrower", nickname: "Nandozer") }
 
     let(:order2) { Order.create(user_id: user2.id, order_type: 'delivery', payment_type: 'cash', address_id: 7, status: "paid") }
+
     before(:each) do
       register(first_name: 'Nando', last_name: 'Hasselhoff', email: 'yourmom@aol.com', password: '123', password_confirmation: '123')
       login(email: 'yourmom@aol.com', password: '123')
@@ -86,6 +87,12 @@ describe 'borrower experience' do
       order
       order2
       visit root_path
+    end
+
+    xit "has a borrower dashboard" do
+      expect(path).to eq(borrower_dashboard)
+      expect(page).to have_content("Borrower Dashboard")
+      expect(page).to have_content("Loans")
     end
 
     xit 'can view their orders' do
