@@ -17,14 +17,13 @@ def register(first_name: 'Gen',
   click_on "Create User"
 end
 
-def register_as_admin(first_name: 'Gen',
+def register_as_borrower(first_name: 'Gen',
                       last_name: 'Casagrande',
                       email: 'yourdad123@aol.com',
                       password: '123',
                       password_confirmation: '123')
 
   register(first_name: first_name, last_name: last_name, email: email, password: password, password_confirmation: password_confirmation)
-  User.last.update_column(:role, 'admin')
 end
 
 def login(email: 'yourmom123@aol.com', password: '123')
@@ -34,7 +33,7 @@ def login(email: 'yourmom123@aol.com', password: '123')
   click_button 'Login'
 end
 
-def login_as_admin(email: 'yourdad123@aol.com', password: '123')
+def login_as_borrower(email: 'yourdad123@aol.com', password: '123')
   login(email: email, password: password)
 end
 

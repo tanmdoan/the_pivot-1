@@ -20,30 +20,30 @@ describe 'when viewing the orders' do
 			visit admin_orders_path
 		end
 
-		it 'displays orders' do
+		xit 'displays orders' do
 			expect(page).to have_content("pickup")
 			expect(page).to have_content("ordered")
 		end
 
-		it 'can edit an order' do
+		xit 'can edit an order' do
 			click_link "Edit"
 			fill_in "Order type", with: "delivery"
 			click_button "Update Order"
 			expect(page).to have_content("delivery")
 		end
 
-		it "has link to cancel or mark as paid orders" do
+		xit "has link to cancel or mark as paid orders" do
 			expect(page).to have_link('Cancel')
 		end
 
-		it 'can cancel orders' do
+		xit 'can cancel orders' do
 			click_link("Cancel")
 			expect(current_path).to eq(admin_orders_path)
 			expect(page).not_to have_content("ordered")
 			expect(page).to have_content("cancelled")
 		end
 
-		it 'can change status to paid' do
+		xit 'can change status to paid' do
 			order.status = 'paid'
 			order.save
 			visit admin_orders_path
@@ -53,7 +53,7 @@ describe 'when viewing the orders' do
 			expect(page).not_to have_content('paid')
 		end
 
-		it 'can change status to completed' do
+		xit 'can change status to completed' do
 			visit admin_orders_path
 			click_link('Mark as Paid')
 			expect(current_path).to eq(admin_orders_path)
@@ -61,7 +61,7 @@ describe 'when viewing the orders' do
 			expect(page).not_to have_content('ordered')
 		end
 
-		it 'does not show an update button for completed status' do
+		xit 'does not show an update button for completed status' do
 			order.status = 'completed'
 			order.save
 			visit admin_orders_path
@@ -69,7 +69,7 @@ describe 'when viewing the orders' do
 			expect(page).not_to have_link('Mark As Completed')
 		end
 
-		it 'does not show an update button for cancelled status' do
+		xit 'does not show an update button for cancelled status' do
 			order.status = 'cancelled'
 			order.save
 			visit admin_orders_path
@@ -77,7 +77,7 @@ describe 'when viewing the orders' do
 			expect(page).not_to have_link('Mark As Completed')
 		end
 
-		it 'can remove items from an order' do
+		xit 'can remove items from an order' do
 			expect(order.items).to eq([item])
 			click_link('Edit')
 			expect(page).to have_content('The Awesome Donut')
@@ -87,14 +87,14 @@ describe 'when viewing the orders' do
 			expect(page).not_to have_content('The Awesome Donut')
 		end
 
-		it 'shows links to filter orders by status' do
+		xit 'shows links to filter orders by status' do
 			expect(page).to have_link('Ordered')
 			expect(page).to have_link('Paid')
 			expect(page).to have_link('Completed')
 			expect(page).to have_link('Cancelled')
 		end
 
-		it 'filters by ordered status' do
+		xit 'filters by ordered status' do
 			order2 =  Order.create(user_id: 1, order_type: "delivery", payment_type: 'cash', address_id: 2, status: "paid")
 			item2 = Item.create(title: 'The Paid Donut', description: 'Clearly, the best donut you\'ve ever had.', price: 4300)
 			order_item2 = OrderItem.create(order_id: order2.id, item_id: item2.id, quantity: 2, unit_price: 210)
@@ -103,7 +103,7 @@ describe 'when viewing the orders' do
 			expect(page).to have_content('pickup')
 		end
 
-		it 'filters by paid status' do
+		xit 'filters by paid status' do
 			order.status = 'completed'
 			order.save
 			visit admin_orders_path
@@ -115,7 +115,7 @@ describe 'when viewing the orders' do
 			expect(page).not_to have_content('pickup')
 		end
 
-		it 'filters by completed status' do
+		xit 'filters by completed status' do
 			order2 =  Order.create(user_id: 1, order_type: "delivery", payment_type: 'cash', address_id: 2, status: "completed")
 			item2 = Item.create(title: 'The Paid Donut', description: 'Clearly, the best donut you\'ve ever had.', price: 4300)
 			order_item2 = OrderItem.create(order_id: order2.id, item_id: item2.id, quantity: 2, unit_price: 210)
@@ -124,7 +124,7 @@ describe 'when viewing the orders' do
 			expect(page).not_to have_content('pickup')
 		end
 
-		it 'filters by cancelled status' do
+		xit 'filters by cancelled status' do
 			order2 =  Order.create(user_id: 1, order_type: "delivery", payment_type: 'cash', address_id: 2, status: "cancelled")
 			item2 = Item.create(title: 'The Paid Donut', description: 'Clearly, the best donut you\'ve ever had.', price: 4300)
 			order_item2 = OrderItem.create(order_id: order2.id, item_id: item2.id, quantity: 2, unit_price: 210)
@@ -133,17 +133,17 @@ describe 'when viewing the orders' do
 			expect(page).not_to have_content('pickup')
 		end
 
-    it 'can see customer name from orders page' do
+    xit 'can see customer name from orders page' do
       expect(page).to have_content('your dad')
     end
 
-    it 'can see email address and customer name on details page' do
+    xit 'can see email address and customer name on details page' do
       click_link 'Details'
       expect(page).to have_content('your dad')
       expect(page).to have_content('yourdad123@aol.com')
     end
 
-    it 'shows the address for delivery orders' do
+    xit 'shows the address for delivery orders' do
       order.order_type = 'delivery'
       order.save
       visit admin_orders_path
@@ -151,7 +151,7 @@ describe 'when viewing the orders' do
       expect(page).to have_content('1 Blake St, Denver, CO 80000')
     end
 
-    it 'does not show address for pickup orders' do
+    xit 'does not show address for pickup orders' do
       click_link 'Details'
       expect(page).not_to have_content('1 Blake St, Denver, CO 80000')
     end
@@ -174,11 +174,11 @@ describe 'when viewing the orders' do
       visit orders_path
     end
 
-    it 'shows estimated time until order will be ready on my orders page' do
+    xit 'shows estimated time until order will be ready on my orders page' do
       expect(page).to have_content(order.current_wait_time)
     end
 
-    it 'shows estimatedd time until order will be ready on order details page' do
+    xit 'shows estimatedd time until order will be ready on order details page' do
       visit order_path(order)
       expect(page).to have_content(order.current_wait_time)
     end
