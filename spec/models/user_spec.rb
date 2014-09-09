@@ -37,6 +37,8 @@ describe User, type: :model do
 
   it { should have_secure_password }
 
+  it { should validate_presence_of(:role)}
+
   it { should allow_value(nil).for(:nickname) }
 
   it { should ensure_length_of(:nickname).is_at_most(32) }
