@@ -61,9 +61,6 @@ jorge_address = Address.create(street: '23 Colfax Ave', city: 'Denver', state: '
 
 users = User.all
 
-10.times do {
-
-}
 
 #ORDERS
 #rachel_order1 = Order.create(user: rachel, order_type: 'delivery', payment_type: 'cash', address: rachel_address1, status: "ordered")
