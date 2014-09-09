@@ -30,6 +30,10 @@
             <%= f.password_field :password %><br/>
             <%= f.label          :password_confirmation %><br/>
             <%= f.password_field :password_confirmation %><br/><br/>
+            <%= f.radio_button(:role, "borrower", { :checked => true }) %>
+            <%= f.label(:role_borrower, "Borrower") %>
+            <%= f.radio_button(:role, "lender") %>
+            <%= f.label(:role_lender, "Lender") %>
             <%= f.submit "Create User", class: "btn btn-primary" %>
           <% end %>
         </div>
