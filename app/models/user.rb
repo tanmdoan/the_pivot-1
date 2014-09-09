@@ -14,11 +14,4 @@ class User<ActiveRecord::Base
   has_many :addresses
   has_many :orders
 
-  before_create :set_role
-
-  private
-
-  def set_role
-    self.role = "borrower"
-  end
 end
