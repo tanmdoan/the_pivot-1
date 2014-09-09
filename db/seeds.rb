@@ -1,10 +1,10 @@
 # CATEGORIES
-Category.create(name: "Your Mom's Favorites")
-Category.create(name: "Donut's of Lore")
-Category.create(name: "You Probably Can't Afford")
-Category.create(name: "These Donuts Are Above You")
-Category.create(name: "Donuts We Wont Sell You")
-Category.create(name: "Donuts We Wont Even Show You")
+Category.create(name: "Agriculture")
+Category.create(name: "Small Business")
+Category.create(name: "Infastructure")
+Category.create(name: "Refugee")
+Category.create(name: "Women Owned Businesses")
+Category.create(name: "Parents")
 
 #ITEMS
 
