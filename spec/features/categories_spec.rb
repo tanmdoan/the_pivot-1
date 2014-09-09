@@ -12,15 +12,15 @@ describe 'when viewing the categories' do
 			visit admin_categories_path
 		end
 
-		it 'can view categories' do
+		xit 'can view categories' do
 			expect(page).to have_content("Savory")
 		end
 
-		it 'has a link to edit' do
+		xit 'has a link to edit' do
 			expect(page).to have_link('Edit')
 		end
 
-		it 'can edit a category' do
+		xit 'can edit a category' do
 			click_link 'Edit'
 			fill_in "Name", with: "Changed Donut"
 			click_button 'Update Category'
@@ -28,11 +28,11 @@ describe 'when viewing the categories' do
 			expect(current_path).to eq(admin_categories_path)
 		end
 
-		it 'has a link to add a category' do
+		xit 'has a link to add a category' do
 			expect(page).to have_button('Add Category')
 		end
 
-		it 'can add a category' do
+		xit 'can add a category' do
 			click_button 'Add Category'
 			fill_in "Name", with: 'New Category'
 			click_button 'Create Category'
@@ -40,7 +40,7 @@ describe 'when viewing the categories' do
 			expect(current_path).to eq(admin_categories_path)
 		end
 
-		it 'can delete a category' do
+		xit 'can delete a category' do
 			click_link "Delete"
 			expect(page).not_to have_content("Savory")
 			expect(current_path).to eq(admin_categories_path)
@@ -61,14 +61,14 @@ describe 'when viewing the categories' do
 		end
 
 
-		it 'cannnot edit, delete, or add categories' do
+		xit 'cannnot edit, delete, or add categories' do
 			expect(page).not_to have_content('Edit')
 			expect(page).not_to have_content('Delete')
 			expect(page).not_to have_content('Add Category')
 		end
 
 
-		it 'cannot see items that are retired' do
+		xit 'cannot see items that are retired' do
 			item.enabled = false
 			item.save
 

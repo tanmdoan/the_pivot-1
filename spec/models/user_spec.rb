@@ -9,7 +9,7 @@ describe User, type: :model do
              nickname: "pwner2000",
              password: "123456",
              password_confirmation: "123456",
-             role: "admin"
+             role: "borrower"
               )
   end
 
@@ -36,6 +36,8 @@ describe User, type: :model do
   it { should validate_uniqueness_of(:email) }
 
   it { should have_secure_password }
+
+  it { should validate_presence_of(:role)}
 
   it { should allow_value(nil).for(:nickname) }
 
