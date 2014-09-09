@@ -1,69 +1,70 @@
 require 'rails_helper'
 include ApplicationHelper
 
-describe 'user experience' do
+describe 'borrower experience' do
   context 'as a guest' do
     it 'can see a register link' do
       visit root_path
       expect(page).to have_link 'Register'
     end
 
-    it 'can register a new account' do
+    it 'can register a new borrower account' do
       register
       expect(current_path).to eq root_path
       expect(User.count).to eq 1
+      expect(User.last.role).to eq "borrower"
     end
 
-    xit 'cannot register without an email' do
+    it 'cannot register without an email' do
       register(email: nil)
       expect(page).to have_content "Email can't be blank"
     end
 
-    xit 'cannot register with an email already registersed' do
+    it 'cannot register with an email already registersed' do
       register
       click_on 'Logout'
       register
       expect(page).to have_content "Email has already been taken"
     end
 
-    xit 'cannot register with an invalid email address' do
+    it 'cannot register with an invalid email address' do
       register(email: '^$%^%#$@#$^%$^.com')
       expect(page).to have_content "Email is invalid"
     end
 
-    xit 'cannot register without a password' do
+    it 'cannot register without a password' do
       register(password: nil)
       expect(page).to have_content "Password can't be blank"
     end
 
-    xit 'cannot register without a password confirmation' do
+    it 'cannot register without a password confirmation' do
       register(password_confirmation: nil)
       expect(page).to have_content "Password confirmation can't be blank"
     end
 
-    xit 'cannnot register when passwords do not match' do
+    it 'cannnot register when passwords do not match' do
       register(password: '123', password_confirmation: '1234')
       expect(page).to have_content "Password confirmation doesn't match Password"
     end
 
-    xit 'stays logged in after registration' do
+    it 'stays logged in after registration' do
       register
       expect(page).to have_link "Logout"
     end
 
-    xit 'gives me confirmation after successful registration' do
+    it 'gives me confirmation after successful registration' do
       register
       expect(page).to have_content "Registration successful"
     end
 
-    xit 'cannot backdoor to admin pages' do
+    it 'cannot backdoor to admin pages' do
       visit admin_items_path
       expect(current_path).to eq(login_path)
       visit admin_categories_path
       expect(current_path).to eq(login_path)
     end
 
-    xit 'cannot register with a nickname of 1 character or greater than 32 characters' do
+    it 'cannot register with a nickname of 1 character or greater than 32 characters' do
       visit root_path
       click_link 'Register'
       register(nickname: 'o')
@@ -71,7 +72,7 @@ describe 'user experience' do
     end
   end
 
-  context 'as a registered user' do
+  context 'as a registered borrower' do
 
     let(:order) { Order.create(user_id: 1, order_type: 'pickup', payment_type: 'cash', address_id: 7, status: "ordered") }
     let(:user2) { User.create(first_name: "Nan", last_name: "Hass", email: "yourmommy@aol.com",
