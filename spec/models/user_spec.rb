@@ -9,7 +9,7 @@ describe User, type: :model do
              nickname: "pwner2000",
              password: "123456",
              password_confirmation: "123456",
-             role: "admin"
+             role: "borrower"
               )
   end
 
