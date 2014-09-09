@@ -3,12 +3,12 @@ include ApplicationHelper
 
 describe 'user experience' do
   context 'as a guest' do
-    xit 'can see a register link' do
+    it 'can see a register link' do
       visit root_path
       expect(page).to have_link 'Register'
     end
 
-    xit 'can register a new account' do
+    it 'can register a new account' do
       register
       expect(current_path).to eq root_path
       expect(User.count).to eq 1
