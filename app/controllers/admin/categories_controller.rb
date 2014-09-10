@@ -1,4 +1,4 @@
-class Admin::CategoriesController < AdminController
+class borrower::CategoriesController < borrowerController
 
 	def index
     @categories = Category.includes(:items).all.decorate
@@ -11,7 +11,7 @@ class Admin::CategoriesController < AdminController
 	def update
 		@category = Category.find(params[:id])
 		if @category.update(category_params)
-			redirect_to admin_categories_path
+			redirect_to borrower_categories_path
 		else
 			render :edit
 		end
@@ -23,12 +23,12 @@ class Admin::CategoriesController < AdminController
 
 	def create
 		Category.create(category_params)
-		redirect_to admin_categories_path
+		redirect_to borrower_categories_path
 	end
 
 	def destroy
 		Category.find(params[:id]).destroy
-		redirect_to admin_categories_path
+		redirect_to borrower_categories_path
 	end
 
 	private

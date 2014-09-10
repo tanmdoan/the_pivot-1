@@ -4,13 +4,13 @@ describe 'when viewing the items' do
 
 	let(:item) { Item.create(title: 'The Awesome Donut', description: 'Clearly, the best donut you\'ve ever had.', price: 4500) }
 
-	context 'as an admin' do
+	context 'as an borrower' do
 
 		before(:each) do
-			register_as_admin
-			login_as_admin
+			register_as_borrower
+			login_as_borrower
 			item
-			visit admin_items_path
+			visit borrower_items_path
 		end
 
 		xit 'should exist' do
@@ -24,12 +24,12 @@ describe 'when viewing the items' do
 		end
 
 		xit 'has a link to an item' do
-			expect(page).to have_link 'The Awesome Donut', href: admin_item_path(item)
+			expect(page).to have_link 'The Awesome Donut', href: borrower_item_path(item)
 		end
 
 		xit 'links successfully to item' do
 			click_link 'The Awesome Donut'
-			expect(current_path).to eq(admin_item_path(item))
+			expect(current_path).to eq(borrower_item_path(item))
 			expect(page).to have_content 'The Awesome Donut'
 			expect(page).to have_content 'Clearly, the best donut you\'ve ever had.'
 		end
@@ -39,14 +39,14 @@ describe 'when viewing the items' do
 			category = Category.create(name: "Savory")
 			item.categories << category
 			category.items << item
-			visit admin_items_path
+			visit borrower_items_path
 			expect(page).to have_content "Shitty Donut"
 			expect(page).to have_content "Savory"
 		end
 
 		xit 'links successfully to item' do
 			click_link 'The Awesome Donut'
-			expect(current_path).to eq(admin_item_path(item))
+			expect(current_path).to eq(borrower_item_path(item))
 			expect(page).to have_content 'The Awesome Donut'
 			expect(page).to have_content 'Clearly, the best donut you\'ve ever had.'
 		end
@@ -56,60 +56,60 @@ describe 'when viewing the items' do
 			category = Category.create(name: "Savory")
 			item.categories << category
 			category.items << item
-			visit admin_items_path
+			visit borrower_items_path
 			expect(page).to have_content "Shitty Donut"
 			expect(page).to have_content "Savory"
 		end
 
 		xit 'can create a new item' do
-			visit new_admin_item_path
+			visit new_borrower_item_path
 			fill_in "Title", with: "Fancy New Donut"
 			fill_in "Description", with: "It's pretty fancy"
 			fill_in "Price", with: "800"
 			click_button "Create Item"
-			expect(current_path).to eq(admin_items_path)
+			expect(current_path).to eq(borrower_items_path)
 			expect(page).to have_content 'Fancy New Donut'
 			expect(page).to have_content "It's pretty fancy"
 		end
 
 		xit	'cannot create an item without a title' do
-			visit new_admin_item_path
+			visit new_borrower_item_path
 			fill_in "Title", with: ""
 			fill_in "Description", with: "It's pretty fancy"
 			fill_in "Price", with: "800"
 			click_button "Create Item"
-			expect(current_path).to eq(admin_items_path)
+			expect(current_path).to eq(borrower_items_path)
 			expect(page).to have_content 'blank'
 		end
 
 		xit'cannot create an item without a description' do
-			visit new_admin_item_path
+			visit new_borrower_item_path
 			fill_in "Title", with: "Poopers"
 			fill_in "Description", with: ""
 			fill_in "Price", with: "800"
 			click_button "Create Item"
-			expect(current_path).to eq(admin_items_path)
+			expect(current_path).to eq(borrower_items_path)
 			expect(page).to have_content 'blank'
 		end
 
 		xit	'cannot create an item without a price' do
-			visit new_admin_item_path
+			visit new_borrower_item_path
 			fill_in "Title", with: "Poopers"
 			fill_in "Description", with: ""
 			fill_in "Price", with: ""
 			click_button "Create Item"
-			expect(current_path).to eq(admin_items_path)
+			expect(current_path).to eq(borrower_items_path)
 			expect(page).to have_content 'blank'
 		end
 
 		xit 'can update an item' do
 			item = Item.create(title: "OMG Donut", description: "Just like, wow.", price: 1800)
-			visit edit_admin_item_path(item)
+			visit edit_borrower_item_path(item)
 			fill_in "Title", with: "Fancy New Donut"
 			fill_in "Description", with: "It's pretty fancy"
 			fill_in "Price", with: "800"
 			click_button "Update Item"
-			expect(current_path).to eq(admin_items_path)
+			expect(current_path).to eq(borrower_items_path)
 			expect(page).to have_content 'Fancy New Donut'
 			expect(page).to have_content "It's pretty fancy"
 			expect(page).not_to have_content 'OMG Donut'
@@ -118,42 +118,42 @@ describe 'when viewing the items' do
 
 		xit 'cannot update an item without a title' do
 			item = Item.create(title: "OMG Donut", description: "Just like, wow.", price: 1800)
-			visit edit_admin_item_path(item)
+			visit edit_borrower_item_path(item)
 			fill_in "Title", with: ""
 			fill_in "Description", with: "It's pretty fancy"
 			fill_in "Price", with: "800"
 			click_button "Update Item"
-			expect(current_path).to eq(admin_item_path(item))
+			expect(current_path).to eq(borrower_item_path(item))
 			expect(page).to have_content 'blank'
 		end
 
 		xit 'cannot update an item without a description' do
 			item = Item.create(title: "OMG Donut", description: "Just like, wow.", price: 1800)
-			visit edit_admin_item_path(item)
+			visit edit_borrower_item_path(item)
 			fill_in "Title", with: "Poopers"
 			fill_in "Description", with: ""
 			fill_in "Price", with: "800"
 			click_button "Update Item"
-			expect(current_path).to eq(admin_item_path(item))
+			expect(current_path).to eq(borrower_item_path(item))
 			expect(page).to have_content 'blank'
 		end
 
 		xit 'cannot update an item without a price' do
 			item = Item.create(title: "OMG Donut", description: "Just like, wow.", price: 1800)
-			visit edit_admin_item_path(item)
+			visit edit_borrower_item_path(item)
 			fill_in "Title", with: "Poopers"
 			fill_in "Description", with: "Tasty"
 			fill_in "Price", with: ""
 			click_button "Update Item"
-			expect(current_path).to eq(admin_item_path(item))
+			expect(current_path).to eq(borrower_item_path(item))
 			expect(page).to have_content 'blank'
 		end
 
 		xit 'can delete and item' do
 			item = Item.create(title: "Shitty Donut", description: "A Mistake", price: 0)
-			visit admin_item_path(item)
+			visit borrower_item_path(item)
 			click_link "Delete"
-			expect(current_path).to eq(admin_items_path)
+			expect(current_path).to eq(borrower_items_path)
 			expect(page).not_to have_content "Shitty Donut"
 			expect(page).not_to have_content "A Mistake"
 		end
@@ -162,7 +162,7 @@ describe 'when viewing the items' do
 			category = Category.create(id: 1, name: 'Test Category')
 			category = Category.create(id: 2, name: 'Testy Category')
 			item = Item.create(title: "OMG Donut", description: "Just like, wow.", price: 1800, category_ids: ['1', '2'])
-			visit edit_admin_item_path(item)
+			visit edit_borrower_item_path(item)
 			expect(page).to have_content "Test Category"
 			expect(page).to have_content "Testy Category"
 		end
@@ -172,7 +172,7 @@ describe 'when viewing the items' do
 			item = Item.create(title: "OMG Donut", description: "Just like, wow.", price: 1800)
 			ItemCategory.create(item: item, category: category)
 
-			visit edit_admin_item_path(item)
+			visit edit_borrower_item_path(item)
 			expect(page).to have_content "Test Category"
 			click_link "Delete"
 			expect(page).to_not have_content "Delete"
@@ -183,7 +183,7 @@ describe 'when viewing the items' do
 			Category.create(name: 'Testy Cat')
 			Category.create(name: 'Tasty')
 
-			visit edit_admin_item_path(item)
+			visit edit_borrower_item_path(item)
 			expect(page).to_not have_content 'Delete'
 			click_link "Tasty"
 			expect(page).to have_content 'Delete'

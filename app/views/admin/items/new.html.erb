@@ -13,7 +13,7 @@
       </ul>
     </div>
   <% end %>
-  <%= form_for @item, url: admin_items_path, method: :post do |f| %>
+  <%= form_for @item, url: borrower_items_path, method: :post do |f| %>
     <%= f.label       :title %><br/>
     <%= f.text_field  :title %><br/>
     <%= f.label       :description %><br/>
@@ -24,7 +24,7 @@
     <%= f.file_field  :image %><br/>
     <div class="form-actions">
       <%= f.submit "Create Item", class: "btn btn-primary" %>
-      <%= link_to 'Cancel', admin_items_path, :class => 'btn btn-danger' %>
+      <%= link_to 'Cancel', borrower_items_path, :class => 'btn btn-danger' %>
     </div>
   <% end %>
 </div>

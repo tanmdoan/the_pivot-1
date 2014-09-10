@@ -11,8 +11,8 @@
 </head>
 <body>
 
-  <% if is_admin? %>
-		<%= render 'layouts/admin_navbar' %>
+  <% if is_borrower? %>
+		<%= render 'layouts/borrower_navbar' %>
 	<% else %>
 		<%= render 'layouts/navbar' %>
 	<% end %>

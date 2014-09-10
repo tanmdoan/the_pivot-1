@@ -3,7 +3,7 @@ require 'rails_helper'
 describe 'Authorization', type: :feature do
   context 'As a guest' do
     xit 'cannot view a page requiring authorization' do
-      visit admin_orders_path
+      visit borrower_orders_path
 
       expect(current_path).to eq login_path
       expect(page).to have_content 'You must be logged in to access that.'
@@ -15,8 +15,8 @@ describe 'Authorization', type: :feature do
       register_as_borrower
       login_as_borrower
 
-      visit admin_orders_path
-      expect(current_path).to eq admin_orders_path
+      visit borrower_orders_path
+      expect(current_path).to eq borrower_orders_path
     end
   end
 end

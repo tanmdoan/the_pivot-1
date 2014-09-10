@@ -16,7 +16,7 @@ Rails.application.routes.draw do
     get '/cancel' => 'orders#cancel', as: :cancel
   end
 
-  namespace :admin do
+  namespace :borrower do
     get '/' => 'orders#index'
 
     resources :items do

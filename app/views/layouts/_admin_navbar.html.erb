@@ -9,16 +9,16 @@
 	        <span class="icon-bar"></span>
 	        <span class="icon-bar"></span>
 	      </button>
-	      <a id="ele-logo" class="navbar-brand" href="/admin"><img src="/assets/kevah.png" class="brand" height="40px" width="40px" /></a>
-	      <a class="navbar-brand brand-text" href="/admin">Keeeevaaaah</a>
+	      <a id="ele-logo" class="navbar-brand" href="/borrower"><img src="/assets/kevah.png" class="brand" height="40px" width="40px" /></a>
+	      <a class="navbar-brand brand-text" href="/borrower">Keeeevaaaah</a>
 	    </div>
 
 	    <!-- Collect the nav links, forms, and other content for toggling -->
 	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 	      <ul class="nav navbar-nav">
-	        <li><%= link_to "All Donuts", admin_items_path %></li>
-	        <li><%= link_to "Categories", admin_categories_path %></li>
-	        <li><%= link_to "Orders", admin_orders_path %></li>
+	        <li><%= link_to "All Donuts", borrower_items_path %></li>
+	        <li><%= link_to "Categories", borrower_categories_path %></li>
+	        <li><%= link_to "Orders", borrower_orders_path %></li>
 	      </ul>
 	      <ul class="nav navbar-nav navbar-right">
 	        <% if current_user %>

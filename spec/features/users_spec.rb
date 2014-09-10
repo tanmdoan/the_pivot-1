@@ -56,10 +56,10 @@ describe 'user experience' do
       expect(page).to have_content "Registration successful"
     end
 
-    xit 'cannot backdoor to admin pages' do
-      visit admin_items_path
+    xit 'cannot backdoor to borrower pages' do
+      visit borrower_items_path
       expect(current_path).to eq(login_path)
-      visit admin_categories_path
+      visit borrower_categories_path
       expect(current_path).to eq(login_path)
     end
 
@@ -75,7 +75,7 @@ describe 'user experience' do
 
     let(:order) { Order.create(user_id: 1, order_type: 'pickup', payment_type: 'cash', address_id: 7, status: "ordered") }
     let(:user2) { User.create(first_name: "Nan", last_name: "Hass", email: "yourmommy@aol.com",
-                  password: "password", password_confirmation: "password", role: :admin, nickname: "Nandozer") }
+                  password: "password", password_confirmation: "password", role: :borrower, nickname: "Nandozer") }
 
     let(:order2) { Order.create(user_id: user2.id, order_type: 'delivery', payment_type: 'cash', address_id: 7, status: "paid") }
     before(:each) do

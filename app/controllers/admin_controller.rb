@@ -1,3 +1,3 @@
-class AdminController < ApplicationController
-  before_action :check_admin
+class borrowerController < ApplicationController
+  before_action :check_borrower
 end

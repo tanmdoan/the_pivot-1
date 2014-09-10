@@ -6,8 +6,8 @@ class SessionsController < ApplicationController
     if (user = User.find_by(email: params[:email])) && user.authenticate(params[:password])
       session[:user_id] = user.id
 
-      if is_admin?
-        redirect_to session.delete(:last_page) || admin_orders_path
+      if is_borrower?
+        redirect_to session.delete(:last_page) || borrower_orders_path
       else
         redirect_to session.delete(:last_page) || root_path
       end
