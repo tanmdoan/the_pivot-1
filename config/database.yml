@@ -3,11 +3,7 @@ development:
   encoding: unicode
   database: keeva_development
   pool: 5
-<<<<<<< HEAD
   username: hildenton
-=======
-  username: timproctor
->>>>>>> 6a3ee2a4d438a91588d4bd5c0c367f2e97ff2e11
   password:
 
 test:
@@ -15,9 +11,5 @@ test:
   encoding: unicode
   database: keeva_test
   pool: 5
-<<<<<<< HEAD
   username: hildenton
-=======
-  username: timproctor
->>>>>>> 6a3ee2a4d438a91588d4bd5c0c367f2e97ff2e11
   password:
