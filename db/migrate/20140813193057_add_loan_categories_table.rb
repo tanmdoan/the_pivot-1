@@ -1,9 +1,9 @@
 class AddItemCategoriesTable < ActiveRecord::Migration
   def change
-  	create_table :item_categories do |t|
-      t.integer :item_id
+  	create_table :loan_categories do |t|
+      t.integer :loan_id
       t.integer :category_id
-      
+
       t.timestamps
     end
   end
