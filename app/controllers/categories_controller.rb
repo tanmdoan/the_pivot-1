@@ -1,5 +1,5 @@
 class CategoriesController < ApplicationController
 	def index
-    @categories = Category.with_items.decorate
+    @categories = Category.all.decorate
 	end
 end

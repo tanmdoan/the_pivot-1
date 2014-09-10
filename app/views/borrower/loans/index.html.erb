@@ -1,0 +1,34 @@
+<div class="page-border">
+  <div class="page-header">
+    <h1>LOANS!</h1>
+    <%= link_to 'New', new_borrower_loan_path, :class => 'btn btn-primary' %>
+  </div>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Categories</th>
+        <th>Price</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @loans.each do |loan| %>
+        <tr>
+          <td><%= link_to loan.title, borrower_loan_path(loan) %></td>
+          <td><%= loan.description %></td>
+          <td><%= loan.display_categories %></td>
+          <td><%= loan.unit_price_dollars %></td>
+          <td>
+            <%= link_to 'Edit', edit_borrower_loan_path(loan), :class => 'btn btn-primary' %>
+            <%= link_to 'Delete', borrower_loan_path(loan),
+              :method => :delete,
+              :data => { :confirm => 'Are you sure?' },
+              :class => 'btn btn-mini btn-danger' %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

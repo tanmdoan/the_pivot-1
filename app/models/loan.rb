@@ -11,7 +11,7 @@ class Loan < ActiveRecord::Base
 														greater_than_or_equal_to: 0
 	has_many :loan_categories
 	has_many :categories, through: :loan_categories
-	has_many :orders, through: :order_items
+	has_many :orders, through: :order_loans
 
 	has_attached_file :image, styles: {:small => "150x150>", :thumb => "100x100>"}, default_url: "/assets/images/happy-borrower.jpg"
 	validates_attachment :image, content_type: {content_type: ["image/jpg", "image/jpeg", "image/png", "image/gif"]}

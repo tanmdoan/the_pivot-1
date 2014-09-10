@@ -63,10 +63,9 @@ ActiveRecord::Schema.define(version: 20140828163415) do
     t.datetime "updated_at"
   end
 
-  create_table "order_items", force: true do |t|
-    t.integer  "item_id"
+  create_table "order_loans", force: true do |t|
+    t.integer  "loan_id"
     t.integer  "quantity"
-    t.integer  "unit_price"
     t.integer  "order_id"
     t.datetime "created_at"
     t.datetime "updated_at"

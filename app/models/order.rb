@@ -2,26 +2,26 @@ class Order < ActiveRecord::Base
   before_validation :set_default_values
 	validates :user_id, :order_type, :payment_type, presence: true
 
-	has_many :order_items
-	has_many :items, through: :order_items
+	has_many :order_loans
+	has_many :loans, through: :order_loans
   belongs_to :user
   belongs_to :address
   accepts_nested_attributes_for :address, reject_if: :pickup_or_existing_address
 
-  scope :user_and_oi, -> { includes([:user, :order_items]) }
+  scope :user_and_oi, -> { includes([:user, :order_loans]) }
   scope :ordered, -> { user_and_oi.where(status: 'ordered') }
   scope :paid, -> { user_and_oi.where(status: 'paid') }
   scope :completed, -> { user_and_oi.where(status: 'completed') }
   scope :cancelled, -> { user_and_oi.where(status: 'cancelled') }
-  scope :current_orders, ->(user) { includes(:order_items).where(user: user) }
+  scope :current_orders, ->(user) { includes(:order_loans).where(user: user) }
 
-  def self.new_with_items(params, cart)
+  def self.new_with_loans(params, cart)
     order = new(params)
-    items = Item.where(id: cart.keys)
-    cart.each do |item, quantity|
-      order.order_items.new(item_id: item,
+    loans = loan.where(id: cart.keys)
+    cart.each do |loan, quantity|
+      order.order_loans.new(loan_id: loan,
                             quantity: quantity,
-                            unit_price: items.detect { |x| x.id == item.to_i }.price)
+                            unit_price: loans.detect { |x| x.id == loan.to_i }.price)
     end
     order
   end
@@ -31,7 +31,7 @@ class Order < ActiveRecord::Base
   end
 
   def total
-    @total ||= order_items.inject(0) { |sum, order_item| sum += (order_item.unit_price * order_item.quantity) }
+    @total ||= order_loans.inject(0) { |sum, order_loan| sum += (order_loan.unit_price * order_loan.quantity) }
   end
 
 	def update_status
@@ -46,8 +46,8 @@ class Order < ActiveRecord::Base
     update_attribute(:status, 'cancelled')
 	end
 
-	def remove_item(item_id)
-    update_attribute(:items, reject_from_items(item_id))
+	def remove_loan(loan_id)
+    update_attribute(:loans, reject_from_loans(loan_id))
 	end
 
   def ordered?
@@ -77,8 +77,8 @@ class Order < ActiveRecord::Base
   def total_wait_time
     # each paid order causes 4 min delay
     num_paid = Order.paid.size
-    # order is delayed by 10 minutes for each additional six items
-    order_size_delay = items.count / 6
+    # order is delayed by 10 minutes for each additional six loans
+    order_size_delay = loans.count / 6
     # 12 mins is default wait time
     minutes = 12 + num_paid * 4 + order_size_delay * 10
   end
@@ -112,7 +112,7 @@ class Order < ActiveRecord::Base
 
   private
 
-  def reject_from_items(item_id)
-    items.reject { |item| item.id == item_id.to_i }
+  def reject_from_loans(loan_id)
+    loans.reject { |loan| loan.id == loan_id.to_i }
   end
 end

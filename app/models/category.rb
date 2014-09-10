@@ -1,7 +1,7 @@
 class Category < ActiveRecord::Base
 	validates :name, presence: true, uniqueness: true
-	has_many :item_categories
-	has_many :items, through: :item_categories
+	has_many :loan_categories
+	has_many :loans, through: :loan_categories
 
-  scope :with_items, -> { all.eager_load(:items).where('items.enabled' => true) }
+  # scope :with_loans, -> { all.eager_load(:loans).where('loans.enabled' => true) }
 end
