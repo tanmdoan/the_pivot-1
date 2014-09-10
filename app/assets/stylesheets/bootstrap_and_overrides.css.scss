@@ -11,7 +11,7 @@ div.flash.error   { border: 2px solid red; 	 color: red;}
 // BODY //
 body {
  	padding-top: 85px;
- 	background-image: url('bg.png'); 
+ 	background-image: url('bg.png');
 }
 
 $body-bg: #eee;
@@ -79,69 +79,64 @@ $navbar-inverse-brand-color: #fff;
 	margin: 10px;
 	border: 4px solid #024;
 	padding: 10px;
-	width: 190px;
-	height: 340px;
+  width: 340px;
+  height: 340px;
 	background-color: #E8F3FF;
 	box-shadow: 10px 10px 5px #888;
 }
 
 .item-box-description {
 	width: 100%;
-	height: 100px;
-	background-color: white;
+	height: 100%;
+  background: rgba(0, 0, 0, 0.1);
 	border: 2px solid #024;
-	padding: 4px;
+	padding: 1%;
 }
 
 .item-title {
-	font-size: 17px;
+  position: absolute;
+  margin-left: 1%;
+  top: 5%;
+  font-size: 1.250em;
+  background: rgb(255, 255, 255); /* fallback color */
+  background: rgba(255, 255, 255, 0.5);
 }
 
 .item-description {
-	font-size: 12px;
+  position: absolute;
+  top: 12.5%;
+  margin-left: 1%;
+  margin-right: 60%;
+	font-size: 0.750em;
+  background: rgb(255, 255, 255); /* fallback color */
+  background: rgba(255, 255, 255, 0.5);
 }
 
 .item-image {
+  position: relative;
 	width: 100%;
-	height: 135px;
+	height: 66%;
 	border: 2px dashed #024;
 }
 
+
+.item-box-price {
+  margin-top: 1%;
+  text-align: center;
+}
+
 .item-price {
-	margin-top: 5px;
+  margin-right: 10%;
 	color: red;
 	font-size: 19px;
 	font-weight: bold;
 	text-align: center;
 }
 
-.only-price {
-	
-}
-
-.only {
-	font-family: 'Parisienne', cursive;
-	color: black;
-	font-size: 1.1em;
-}
-
 .add-item {
-	margin-top: 3px;
+	margin-top: 0.6%;
 	box-shadow: 3px 3px 3px #888;
-}
-
-.add-item-box {
-	border: 4px dashed #00450E;
-	padding: 20px;
-	max-width: 45%;
-	background-color: #D6F5D6;
-}
-
-.add-item-text {
-	margin-left: 60px;
-	color: #175B17;
-	font-weight: bold;
-	font-size: 1.3em;
+  display: inline-block;
 }
 
 a.add-item-text:hover {
@@ -184,7 +179,7 @@ a.add-item-text:hover {
 
 // CHECKOUT PAGE //
 #order-summary {
-	border: 3px solid #024;	
+	border: 3px solid #024;
 	padding-bottom: 10px;
 	box-shadow: 10px 10px 5px #888;
 	background-color: white;
