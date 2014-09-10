@@ -1,23 +1,23 @@
 <div class="page-border">
   <div class="page-header">
-    <h1><%= @item.title %></h1>
+    <h1><%= @loan.title %></h1>
   </div>
 
   <dl class="dl-horizontal">
     <dt><strong>Description:</strong></dt>
-    <dd><%= @item.description %></dd>
+    <dd><%= @loan.description %></dd>
     <dt><strong>Categories:</strong></dt>
-    <dd><%= @item.display_categories %></dd>
+    <dd><%= @loan.display_categories %></dd>
     <dt><strong>Price:</strong></dt>
-    <dd><%= @item.unit_price_dollars %></dd>
+    <dd><%= @loan.unit_price_dollars %></dd>
     <dt><strong>Image:</strong></dt>
-    <dd><%= image_tag @item.image.url(:small) %></dd>
+    <dd><%= image_tag @loan.image.url(:small) %></dd>
   </dl>
 
   <div class="form-actions">
     <%= link_to 'Edit',
-      edit_borrower_item_path(@item), :class => 'btn btn-primary' %>
-    <%= link_to 'Delete', borrower_item_path(@item),
+      edit_borrower_loan_path(@loan), :class => 'btn btn-primary' %>
+    <%= link_to 'Delete', borrower_loan_path(@loan),
       :method => 'delete',
       :data => { :confirm => 'Are you sure?' },
       :class => 'btn btn-danger' %>

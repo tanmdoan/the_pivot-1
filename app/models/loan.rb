@@ -20,17 +20,10 @@ class Loan < ActiveRecord::Base
     update_attribute(:categories, reject_from_categories(category_id))
 	end
 
-	# def retired?
-	# 	enabled == false
-	# end
-	#
-	# def retire
-  #   update_attribute(:enabled, !enabled)
-	# end
-	#
-  # private
-	#
-  # def reject_from_categories(category_id)
-	#   categories.reject { |category| category.id == category_id.to_i}
-  # end
+
+  private
+
+  def reject_from_categories(category_id)
+	  categories.reject { |category| category.id == category_id.to_i}
+  end
 end

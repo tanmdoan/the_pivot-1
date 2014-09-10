@@ -1,30 +1,40 @@
 <div class="page-border">
   <div class="page-header">
-    <h1>New Item</h1>
+    <h1>New loan</h1>
   </div>
-  <% if @item.errors.any? %>
+  <% if @loan.errors.any? %>
     <div id="error-explanation">
-      <h2><%= pluralize(@item.errors.count, "error") %> prohibited this item from being saved:</h2>
+      <h2><%= pluralize(@loan.errors.count, "error") %> prohibited this loan from being saved:</h2>
 
       <ul>
-        <% @item.errors.full_messages.each do |message| %>
+        <% @loan.errors.full_messages.each do |message| %>
           <li><%= message %></li>
         <% end %>
       </ul>
     </div>
   <% end %>
-  <%= form_for @item, url: borrower_items_path, method: :post do |f| %>
+  <%= form_for @loan, url: borrower_loans_path, method: :post do |f| %>
     <%= f.label       :title %><br/>
     <%= f.text_field  :title %><br/>
     <%= f.label       :description %><br/>
     <%= f.text_field  :description %><br/>
-    <%= f.label       :price %><br/>
-    <%= f.text_field  :price %><br/>
+    <%= f.label       :amount %><br/>
+    <%= f.text_field  :amount %><br/>
+
+    <%= f.label       :repayments_begin %><br/>
+    <%= f.date_field  :repayments_begin %><br/>
+
+    <%= f.label       :requested_by %><br/>
+    <%= f.date_field  :requested_by %><br/>
+
+    <%= f.label       :monthly_payment %><br/>
+    <%= f.text_field  :monthly_payment %><br/>
+
     <%= f.label       :image %><br/>
     <%= f.file_field  :image %><br/>
     <div class="form-actions">
-      <%= f.submit "Create Item", class: "btn btn-primary" %>
-      <%= link_to 'Cancel', borrower_items_path, :class => 'btn btn-danger' %>
+      <%= f.submit "Create loan", class: "btn btn-primary" %>
+      <%= link_to 'Cancel', borrower_loans_path, :class => 'btn btn-danger' %>
     </div>
   <% end %>
 </div>
