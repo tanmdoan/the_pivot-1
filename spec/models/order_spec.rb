@@ -11,12 +11,12 @@ RSpec.describe Order, type: :model  do
 
 	it { should validate_presence_of(:order_type) }
 
-	it 'has an array of order items' do
-		expect(order.order_items).to eq([])
+	it 'has an array of order loans' do
+		expect(order.order_loans).to eq([])
 	end
 
-	it 'has an array of items' do
-		expect(order.items).to eq([])
+	it 'has an array of loans' do
+		expect(order.loans).to eq([])
 	end
 
 	it 'can update the status from ordered to paid' do
@@ -35,13 +35,19 @@ RSpec.describe Order, type: :model  do
 		expect(order2.status).to eq('completed')
 	end
 
-	it 'can have an item removed' do
-		item = Item.create(title: 'The Awesome Donut', description: 'Clearly, the best donut you\'ve ever had.', price: 4500)
-		order.items << item
-		expect(order.items).to eq([item])
+	it 'can have an loan removed' do
+		loan = Loan.create!(title: 'Buy a cow',
+														description: 'Need to buy a milking cow for our farm',
+														amount: 50000,
+														requested_by: "2014-09-10",
+														repayments_begin: "2014-09-10",
+														monthly_payment: 1000
+														)
+		order.loans << loan
+		expect(order.loans).to eq([loan])
 
-		order.remove_item(1)
-		expect(order.items).to eq([])
+		order.remove_loan(1)
+		expect(order.loans).to eq([])
 	end
 
 	it 'can calculate total wait time' do

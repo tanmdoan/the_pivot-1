@@ -58,7 +58,7 @@ describe 'borrower experience' do
     end
 
     it 'cannot backdoor to borrower pages' do
-      visit borrower_items_path
+      visit borrower_loans_path
       expect(current_path).to eq(login_path)
       visit borrower_categories_path
       expect(current_path).to eq(login_path)
@@ -144,10 +144,10 @@ describe 'borrower experience' do
       expect(page).to     have_content(format_time(order.updated_at))
     end
 
-    xit 'can view individual item details from an order' do
-      item = Item.create( title: "Donut1", price: 2400,
+    xit 'can view individual loan details from an order' do
+      loan = Loan.create( title: "Donut1", price: 2400,
                           description: "Good for one 'splorer.")
-      order_item = OrderItem.create(item_id: item.id,
+      order_loan = OrderLoan.create(loan_id: loan.id,
                                     order_id: order.id, quantity: 5,
                                     unit_price: 8000)
 
@@ -155,9 +155,9 @@ describe 'borrower experience' do
       click_on "My Orders"
       click_link "Details"
       click_link 'Donut1'
-      expect(current_path).to eq(item_path(item))
-      expect(page).to have_content(item.title)
-      expect(page).to have_content(item.description)
+      expect(current_path).to eq(loan_path(loan))
+      expect(page).to have_content(loan.title)
+      expect(page).to have_content(loan.description)
     end
 
     xit 'can view profile page' do

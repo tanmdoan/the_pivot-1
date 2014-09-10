@@ -40,30 +40,32 @@ ActiveRecord::Schema.define(version: 20140828163415) do
     t.datetime "updated_at"
   end
 
-  create_table "item_categories", force: true do |t|
-    t.integer  "item_id"
+  create_table "loan_categories", force: true do |t|
+    t.integer  "loan_id"
     t.integer  "category_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "items", force: true do |t|
+  create_table "loans", force: true do |t|
     t.string   "title"
     t.string   "description"
-    t.integer  "price"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.integer  "amount"
+    t.date     "requested_by"
+    t.date     "repayments_begin"
+    t.integer  "monthly_payment"
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
-    t.boolean  "enabled",            default: true
+    t.string   "aasm_state"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
-  create_table "order_items", force: true do |t|
-    t.integer  "item_id"
+  create_table "order_loans", force: true do |t|
+    t.integer  "loan_id"
     t.integer  "quantity"
-    t.integer  "unit_price"
     t.integer  "order_id"
     t.datetime "created_at"
     t.datetime "updated_at"

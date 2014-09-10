@@ -1,7 +1,7 @@
 class Borrower::CategoriesController < BorrowersController
 
 	def index
-    @categories = Category.includes(:items).all.decorate
+    @categories = Category.includes(:loans).all.decorate
 	end
 
 	def edit
