@@ -9,38 +9,48 @@ Category.create(name: "Parents")
 #ITEMS
 
 #Moms Favs
-Item.create( title: "The Mangler", price: 2400,
-  description: "One bite, all the mangles. Just like mom used to make.",
+Item.create( title: "Loan 1", price: 24000,
+  description: "Integer vel justo felis.",
   category_ids: ["1"])
-Item.create( title: "The Enola Gay", price: 500,
-  description: "Droppin' bombs in your mouth.",
+Item.create( title: "Loan 2", price: 500000,
+  description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vel justo felis.",
   category_ids: ["1", "4"])
-Item.create( title: "The BroNut", price: 19000,
-  description: "Comes with 5lbs of Whey Protien and a BowFlex.", category_ids: ["1"])
+Item.create( title: "Loan 3", price: 19000,
+  description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+  category_ids: ["1"])
 
 #Lore
-Item.create( title: "Unicorn Bitty", price: 7500,
-  description: "Made from real bits of unicorn.", category_ids: ["2"])
-Item.create( title: "Sauron's Delight", price: 2500,
-  description: "Only the fires of Mordor could digest this.", category_ids: ["2","5"])
-Item.create( title: "Chewybacca", price: 2500,
-  description: "RRrRRGLRRr GLRrrrr rrrGHRR RrRRrr!", category_ids: ["2"])
+Item.create( title: "Loan 4", price: 75000,
+  description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vel justo felis.",
+  category_ids: ["2"])
+Item.create( title: "Loan 5", price: 250000,
+  description: "Lorem ipsum dolor sit amet.",
+  category_ids: ["2","5"])
+Item.create( title: "Loan 6", price: 25000,
+  description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+  category_ids: ["2"])
 
 #Afford Expensive
-Item.create( title: "Diamond Mine", price: 177000,
-  description: "One diamond in every bite.", category_ids: ["3"])
-Item.create( title: "Lucky Louvre", price: 0,
-  description: "Made from priceless ground artifacts.", category_ids: ["3","5"])
-Item.create( title: "Benji Bite", price: 8910,
-  description: "$100 bills, ground into meal, fried to perfection.", category_ids: ["3"])
+Item.create( title: "Loan 7", price: 177000,
+  description: "Consectetur adipiscing elit. Integer vel justo felis.",
+  category_ids: ["3", "2"])
+Item.create( title: "Loan 8", price: 67500,
+  description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+  category_ids: ["3","5"])
+Item.create( title: "Loan 9", price: 89100,
+  description: "Integer vel justo felis.",
+  category_ids: ["3"])
 
 #Above you
-Item.create( title: "Fronut", price: 980,
-  description: "Free afro pick with purchase.", category_ids: ["3", "4"])
-Item.create( title: "Gorgeous", price: 2500,
-  description: "Unlike your face.", category_ids: ["4"])
-Item.create( title: "The Harvard", price: 620,
-  description: "Has read more books than you.", category_ids: ["4"])
+Item.create( title: "Loan 10", price: 9800,
+  description: "Lorem ipsum dolor sit amet.",
+  category_ids: ["3", "4"])
+Item.create( title: "Loan 11", price: 25000,
+  description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vel justo felis.",
+  category_ids: ["4"])
+Item.create( title: "Loan 12", price: 620000,
+  description: "Integer vel justo felis.",
+  category_ids: ["4", "1"])
 
 # USERS
 rachel = User.create(first_name: "Rachel", last_name: "Warbelow", email: "demo+rachel@jumpstartlab.com",
@@ -53,6 +63,10 @@ josh = User.create(first_name: "Josh", last_name: "Cheek", email: "demo+josh@jum
   password: "password", password_confirmation: "password", role: :borrower, nickname: 'josh')
 watts = User.create(first_name: "Watts", last_name: "Watkins", email: "demo+watts@jumpstartlab.com",
   password: "password", password_confirmation: "password", role: "borrower", nickname: 'watts')
+
+hilary = User.create(first_name: "Hil", last_name: "Denton", email: "something@jumpstartlab.com",
+  password: "password", password_confirmation: "password", role: "borrower", nickname: 'hildawg')
+
 
 rachel_address1 = Address.create(street: '1510 Blake St', city: 'Denver', state: 'CO', zip: '80205', user: rachel)
 rachel_address2 = Address.create(street: '198 Araphoe St', city: 'Denver', state: 'CO', zip: '80205', user: rachel)

@@ -1,4 +1,14 @@
 class UsersController < ApplicationController
+  before_action :borrowers, only: [:index, :show]
+
+  def index
+    @users = User.borrowers.decorate
+  end
+
+  def show
+    @user = User.borrowers.find(params[:id]).decorate
+  end
+
   def new
     @user = User.new
   end
@@ -20,4 +30,7 @@ class UsersController < ApplicationController
     params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, :nickname, :role)
   end
 
+  def borrowers
+    User.find_by(role: 'borrower')
+  end
 end

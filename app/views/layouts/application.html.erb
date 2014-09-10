@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Keeeevaaaahh</title>
+  <title>Keevahh</title>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
   <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
@@ -17,18 +17,18 @@
 		<%= render 'layouts/navbar' %>
 	<% end %>
 
-	<div class="container">
+	<div class="container-fluid">
 	  <% flash.each do |name, msg| %>
 	    <%= content_tag :div, msg, :class => "alert flash #{name}" %>
 	  <% end %>
   </div>
 
-	<div class="container">
+	<div class="container-fluid">
 		<%= yield %>
 	</div>
 
 	<footer class="footer">
-		<div class="container">
+		<div class="container-fluid">
 			<p>A <%= link_to "Turing.io", "http://www.turing.io", id: "turing-link" %> project.</p>
 		</div>
 	</footer>
