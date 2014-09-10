@@ -10,25 +10,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
-
   <% if is_admin? %>
 		<%= render 'layouts/admin_navbar' %>
 	<% else %>
 		<%= render 'layouts/navbar' %>
 	<% end %>
 
-	<div class="container">
+	<div class="container-fluid">
 	  <% flash.each do |name, msg| %>
 	    <%= content_tag :div, msg, :class => "alert flash #{name}" %>
 	  <% end %>
   </div>
 
-	<div class="container">
+	<div class="container-fluid">
 		<%= yield %>
 	</div>
 
 	<footer class="footer">
-		<div class="container">
+		<div class="container-fluid">
 			<p>A <%= link_to "Turing.io", "http://www.turing.io", id: "turing-link" %> project.</p>
 		</div>
 	</footer>
