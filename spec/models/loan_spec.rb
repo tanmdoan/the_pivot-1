@@ -1,16 +1,16 @@
 require 'rails_helper'
 
-RSpec.describe Item, type: :model  do
+RSpec.describe Loan, type: :model  do
 	let(:loan) { Loan.create!(title: 'Buy a cow',
 													description: 'Need to buy a milking cow for our farm',
 													amount: 50000,
-													requested_by: "2014-09-10 13:43:00 -0600",
-													repayments_begin: "2014-09-10 13:43:00 -0600",
+													requested_by: "2014-09-10",
+													repayments_begin: "2014-09-10",
 													monthly_payment: 1000
 													) }
 
 	it 'is valid' do
-		expect(item).to be_valid
+		expect(loan).to be_valid
 	end
 
 	it { should validate_presence_of(:title) }
@@ -30,6 +30,6 @@ RSpec.describe Item, type: :model  do
 	it { should validate_numericality_of(:monthly_payment)}
 
 	it 'has an array of categories' do
-		expect(item.categories).to eq([])
+		expect(loan.categories).to eq([])
 	end
 end
