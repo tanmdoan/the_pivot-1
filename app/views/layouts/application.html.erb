@@ -10,8 +10,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
+
   <% if is_borrower? %>
-		<%= render 'layouts/admin_navbar' %>
+		<%= render 'layouts/borrower_navbar' %>
 	<% else %>
 		<%= render 'layouts/navbar' %>
 	<% end %>

@@ -1,4 +1,4 @@
-class Admin::ItemsController < AdminController
+class Borrower::ItemsController < BorrowersController
 	def index
     @items = Item.includes(:categories).all.decorate
 	end
@@ -14,7 +14,7 @@ class Admin::ItemsController < AdminController
 	def create
 		@item = Item.new(item_params)
 		if @item.save
-			redirect_to admin_items_path
+			redirect_to borrower_items_path
 		else
 			render :new
 		end
@@ -28,7 +28,7 @@ class Admin::ItemsController < AdminController
 	def update
     @item = Item.find(params[:id]).decorate
 		if @item.update(item_params)
-			redirect_to admin_items_path
+			redirect_to borrower_items_path
 		else
 			render :edit
 		end
@@ -37,7 +37,7 @@ class Admin::ItemsController < AdminController
 	def delete_category
 		item = Item.find(params[:item_id])
 		item.remove_category(params[:category_id])
-		redirect_to edit_admin_item_path(item)
+		redirect_to edit_borrower_item_path(item)
 	end
 
 	def add_category
@@ -45,18 +45,18 @@ class Admin::ItemsController < AdminController
 		unless ItemCategory.find_by(item_id: params[:item_id], category_id: params[:category_id])
 			ItemCategory.create(item_id: params[:item_id], category_id: params[:category_id])
 		end
-		redirect_to edit_admin_item_path(item)
+		redirect_to edit_borrower_item_path(item)
 	end
 
 	def destroy
 		Item.find(params[:id]).destroy
-		redirect_to admin_items_path
+		redirect_to borrower_items_path
 	end
 
 	def retire
 		@item = Item.find(params[:item_id])
 		@item.retire
-		redirect_to admin_items_path
+		redirect_to borrower_items_path
 	end
 
 	private

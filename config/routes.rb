@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
 
-  resources :categories, only: [:index]
+  resources :categories, only: :show
   resources :items, only: [:show]
   resources :users, only: [:new, :create, :index, :show]
   resource :account, only: [:show, :edit, :update]
@@ -16,7 +16,7 @@ Rails.application.routes.draw do
     get '/cancel' => 'orders#cancel', as: :cancel
   end
 
-  namespace :admin do
+  namespace :borrower do
     get '/' => 'orders#index'
 
     resources :items do

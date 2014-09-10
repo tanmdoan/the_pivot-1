@@ -31,7 +31,7 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def check_admin
+  def check_borrower
     unless is_borrower?
       login_with_flash
     end

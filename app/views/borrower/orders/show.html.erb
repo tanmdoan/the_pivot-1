@@ -16,7 +16,7 @@
   <% end %>
   <dt><strong><%= model_class.human_attribute_name(:items) %>:</strong></dt>
   <% @order.order_items.each do |order_item| %>
-    <dd><%= link_to order_item.item_title, admin_item_path(order_item.item) %> |
+    <dd><%= link_to order_item.item_title, borrower_item_path(order_item.item) %> |
       Quantity: <%= order_item.quantity %> |
       Unit Price: <%= order_item.unit_price_dollars %> |
       Subtotal: <%= order_item.subtotal %><br/></dd>
@@ -35,10 +35,10 @@
 
 <div class="form-actions">
   <%= link_to t('.edit', :default => t("helpers.links.edit")),
-              edit_admin_order_path(@order), :class => 'btn btn-primary' %>
+              edit_borrower_order_path(@order), :class => 'btn btn-primary' %>
   <% if @order.pending? %>
     <%= link_to t('.edit', :default => t("Cancel")),
-                  admin_order_cancel_path(@order),
+                  borrower_order_cancel_path(@order),
                   :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
                   :class => 'btn btn-mini btn-danger' %>
   <% end %>
