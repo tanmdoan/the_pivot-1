@@ -1,4 +1,4 @@
-class borrower::OrdersController < borrowerController
+class Borrower::OrdersController < BorrowersController
   before_action :check_borrower, only: [:index]
 
 	def index

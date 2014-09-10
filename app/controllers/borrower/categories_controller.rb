@@ -1,4 +1,4 @@
-class borrower::CategoriesController < borrowerController
+class Borrower::CategoriesController < BorrowersController
 
 	def index
     @categories = Category.includes(:items).all.decorate

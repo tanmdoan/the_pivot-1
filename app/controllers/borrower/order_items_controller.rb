@@ -1,4 +1,4 @@
-class borrower::OrderItemsController < borrowerController
+class Borrower::OrderItemsController < BorrowersController
   def destroy
     @order_item = OrderItem.find(params[:id])
     order = Order.find(@order_item.order_id)
