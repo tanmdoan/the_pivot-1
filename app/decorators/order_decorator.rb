@@ -7,7 +7,7 @@ class OrderDecorator < ApplicationDecorator
   delegate :name, :email, to: :user, prefix: true
 
   def update_link
-    h.link_to text_for_update, h.admin_order_update_status_path(order),
+    h.link_to text_for_update, h.borrower_order_update_status_path(order),
       data: { confirm: 'Are you sure?' },
       class: 'btn btn-mini btn-success'
   end

@@ -1,15 +1,15 @@
 require 'rails_helper'
 
 describe 'when viewing the categories' do
-	context 'as a admin' do
+	context 'as a borrower' do
 
 		let(:category) { Category.create(name: 'Savory') }
 
 		before(:each) do
-			register_as_admin
-			login_as_admin
+			register_as_borrower
+			login_as_borrower
 			category
-			visit admin_categories_path
+			visit borrower_categories_path
 		end
 
 		xit 'can view categories' do
@@ -25,7 +25,7 @@ describe 'when viewing the categories' do
 			fill_in "Name", with: "Changed Donut"
 			click_button 'Update Category'
 			expect(page).to have_content("Changed Donut")
-			expect(current_path).to eq(admin_categories_path)
+			expect(current_path).to eq(borrower_categories_path)
 		end
 
 		xit 'has a link to add a category' do
@@ -37,13 +37,13 @@ describe 'when viewing the categories' do
 			fill_in "Name", with: 'New Category'
 			click_button 'Create Category'
 			expect(page).to have_content('New Category')
-			expect(current_path).to eq(admin_categories_path)
+			expect(current_path).to eq(borrower_categories_path)
 		end
 
 		xit 'can delete a category' do
 			click_link "Delete"
 			expect(page).not_to have_content("Savory")
-			expect(current_path).to eq(admin_categories_path)
+			expect(current_path).to eq(borrower_categories_path)
 		end
 	end
 

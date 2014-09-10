@@ -60,7 +60,7 @@ jeff = User.create(first_name: "Jeff", last_name: "Casimir", email: "demo+jeff@j
 jorge = User.create(first_name: "Jorge", last_name: "Tellez", email: "demo+jorge@jumpstartlab.com",
   password: "password", password_confirmation: "password", role: :default, nickname: 'novohispano')
 josh = User.create(first_name: "Josh", last_name: "Cheek", email: "demo+josh@jumpstartlab.com",
-  password: "password", password_confirmation: "password", role: :admin, nickname: 'josh')
+  password: "password", password_confirmation: "password", role: :borrower, nickname: 'josh')
 watts = User.create(first_name: "Watts", last_name: "Watkins", email: "demo+watts@jumpstartlab.com",
   password: "password", password_confirmation: "password", role: "borrower", nickname: 'watts')
 

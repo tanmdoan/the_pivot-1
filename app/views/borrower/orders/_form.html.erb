@@ -1,19 +1,19 @@
 <% @order.order_items.each do |order_item| %>
   <span class="form-title"><%= order_item.item_title %></span><br/>
 
-  <%= simple_form_for order_item, url: admin_order_item_path(order_item) do |f| %>
+  <%= simple_form_for order_item, url: borrower_order_item_path(order_item) do |f| %>
     <br/>
     <%= f.input :quantity %>
     <%= f.input :unit_price, input_html: { value: order_item.unit_price_decimal }, as: :decimal %><br/>
     <%= f.button :submit, :class => 'btn-primary' %>
     <br/><br/>
-    <%= link_to 'Remove', admin_order_item_path(order_item),
+    <%= link_to 'Remove', borrower_order_item_path(order_item),
       method: :delete, :class => 'btn btn-mini btn-danger' %>
   <% end %>
   <br/><br/>
 <% end %>
 
-<%= form_for @order, url: admin_order_path(@order) do |f| %>
+<%= form_for @order, url: borrower_order_path(@order) do |f| %>
   <span class="form-title"><%= f.label :order_type %></span><br/>
   <%= f.text_field :order_type %><br/><br/>
   <span class="form-title"><%= f.label :status %></span><br/>
@@ -21,6 +21,6 @@
   <span class="form-title">Total: <%= @order.total_dollars %></span><br/><br/>
   <div class="form-actions">
     <%= f.submit 'Update Order', :class => 'btn-primary' %>
-    <%= link_to 'Cancel', admin_orders_path, :class => 'btn' %>
+    <%= link_to 'Cancel', borrower_orders_path, :class => 'btn' %>
   </div>
 <% end %>

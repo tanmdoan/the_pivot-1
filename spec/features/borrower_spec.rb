@@ -57,10 +57,10 @@ describe 'borrower experience' do
       expect(page).to have_content "Registration successful"
     end
 
-    it 'cannot backdoor to admin pages' do
-      visit admin_items_path
+    it 'cannot backdoor to borrower pages' do
+      visit borrower_items_path
       expect(current_path).to eq(login_path)
-      visit admin_categories_path
+      visit borrower_categories_path
       expect(current_path).to eq(login_path)
     end
 
