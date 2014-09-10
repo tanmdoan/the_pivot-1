@@ -64,6 +64,10 @@ josh = User.create(first_name: "Josh", last_name: "Cheek", email: "demo+josh@jum
 watts = User.create(first_name: "Watts", last_name: "Watkins", email: "demo+watts@jumpstartlab.com",
   password: "password", password_confirmation: "password", role: "borrower", nickname: 'watts')
 
+hilary = User.create(first_name: "Hil", last_name: "Denton", email: "something@jumpstartlab.com",
+  password: "password", password_confirmation: "password", role: "borrower", nickname: 'hildawg')
+
+
 rachel_address1 = Address.create(street: '1510 Blake St', city: 'Denver', state: 'CO', zip: '80205', user: rachel)
 rachel_address2 = Address.create(street: '198 Araphoe St', city: 'Denver', state: 'CO', zip: '80205', user: rachel)
 jeff_address1 = Address.create(street: '3273 Lawrence St', city: 'Denver', state: 'CO', zip: '80205', user: jeff)
