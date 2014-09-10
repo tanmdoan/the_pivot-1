@@ -22,7 +22,7 @@ def register_as_borrower(first_name: 'Gen',
                       email: 'yourdad123@aol.com',
                       password: '123',
                       password_confirmation: '123')
-  
+
   register(first_name: first_name, last_name: last_name, email: email, password: password, password_confirmation: password_confirmation)
 end
 
@@ -35,6 +35,11 @@ end
 
 def login_as_borrower(email: 'yourdad123@aol.com', password: '123')
   login(email: email, password: password)
+end
+
+def register_and_login_as_borrower
+  register_as_borrower
+  login_as_borrower
 end
 
 def format_date(date)
