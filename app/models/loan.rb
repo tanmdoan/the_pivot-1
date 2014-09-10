@@ -4,7 +4,7 @@ class Loan < ActiveRecord::Base
 						:amount,
 						:requested_by,
 						:repayments_begin,
-						:monthly_payments,
+						:monthly_payment,
 						presence: true
 	validates_numericality_of :amount,
 	 													:monthly_payment,
