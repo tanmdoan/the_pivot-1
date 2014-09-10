@@ -1,7 +1,6 @@
 <div class="main-menu">
-
   <div class="col-md-8">
-    <div id="main-menu-title"><h1>- WE MAKE DREAMS REAL! -</h1></div>
+    <div id="main-menu-title"><h1>- Giving a <em>little</em> can mean <strong>A Lot</strong> -</h1></div>
     <% @categories.each do |category| %>
       <span class="category-name">- <%= category.name %> -</span>
       <div class="donuts transitions-enabled">
@@ -32,7 +31,7 @@
                       <%= f.hidden_field :item_id, value: item.id %>
                       <%= f.hidden_field :quantity, value: 1 %>
                       <%= button_tag type: 'submit', class: 'btn btn-primary btn-add-item' do %>
-                        <span class='glyphicon glyphicon-plus-sign'></span> Add to Cart
+                        <span class='glyphicon glyphicon glyphicon-globe'></span> Loan Now
                       <% end %>
                     <% end %>
                   </span>
@@ -50,8 +49,8 @@
   <div class="col-md-4">
     <div id="sticker">
       <img src="/assets/kevah.png" style="padding-top: 45px" height="100%" width="100%"/>
-      <h3 style="text-align: center">Keeeevaaah</h3>
-      <h4 style="text-align: center">Need A Loan?</h4>
+      <h3 style="text-align: center">Keevahh</h3>
+      <h4 style="text-align: center">Micro loans with Macro outcomes</h4>
     </div>
   </div>
 </div>
