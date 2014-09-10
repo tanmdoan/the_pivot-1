@@ -42,8 +42,8 @@ class Borrower::LoansController < BorrowersController
 
 	def add_category
 		loan = Loan.find(params[:loan_id])
-		unless loanCategory.find_by(loan_id: params[:loan_id], category_id: params[:category_id])
-			loanCategory.create(loan_id: params[:loan_id], category_id: params[:category_id])
+		unless LoanCategory.find_by(loan_id: params[:loan_id], category_id: params[:category_id])
+			LoanCategory.create(loan_id: params[:loan_id], category_id: params[:category_id])
 		end
 		redirect_to edit_borrower_loan_path(loan)
 	end
@@ -62,12 +62,12 @@ class Borrower::LoansController < BorrowersController
 	private
 
 	def loan_params
-		safe_params = params.require(:loan).permit(:title, :description, :price, :image)
+		safe_params = params.require(:loan).permit(:title, :description, :amount, :image, :repayments_begin, :requested_by, :monthly_payment)
     update_params(safe_params)
 	end
 
 	def update_params(columns)
-    columns[:price] = (columns[:price].to_d * 100).to_i unless columns[:price].empty?
+    columns[:amount] = (columns[:amount].to_d * 100).to_i unless columns[:amount].empty?
 		columns
 	end
 end
