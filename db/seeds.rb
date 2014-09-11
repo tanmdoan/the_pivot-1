@@ -34,6 +34,85 @@ jorge_address = Address.create(street: '23 Colfax Ave', city: 'Denver', state: '
 
 users = User.all
 
+Loan.create( title: "Loan 1", amount: 24000,
+ description: "Integer vel justo felis.",
+ requested_by: "December 6, 2014",
+ repayments_begin: "February 4, 2015",
+ monthly_payment: 150,
+ category_ids: ["1"])
+Loan.create( title: "Loan 2", amount: 500000,
+ description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vel justo felis.",
+ requested_by: "December 6, 2014",
+ repayments_begin: "February 4, 2015",
+ monthly_payment: 150,
+ category_ids: ["1", "4"])
+Loan.create( title: "Loan 3", amount: 19000,
+ description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+ requested_by: "December 6, 2014",
+ repayments_begin: "February 4, 2015",
+ monthly_payment: 150,
+ category_ids: ["1"])
+
+#Lore
+Loan.create( title: "Loan 4", amount: 75000,
+ description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vel justo felis.",
+ requested_by: "December 6, 2014",
+ repayments_begin: "February 4, 2015",
+ monthly_payment: 150,
+ category_ids: ["2"])
+Loan.create( title: "Loan 5", amount: 250000,
+ description: "Lorem ipsum dolor sit amet.",
+ requested_by: "December 6, 2014",
+ repayments_begin: "February 4, 2015",
+ monthly_payment: 150,
+ category_ids: ["2","5"])
+Loan.create( title: "Loan 6", amount: 25000,
+ description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+ requested_by: "December 6, 2014",
+ repayments_begin: "February 4, 2015",
+ monthly_payment: 150,
+ category_ids: ["2"])
+
+#Afford Expensive
+Loan.create( title: "Loan 7", amount: 177000,
+ description: "Consectetur adipiscing elit. Integer vel justo felis.",
+ requested_by: "December 6, 2014",
+ repayments_begin: "February 4, 2015",
+ monthly_payment: 150,
+ category_ids: ["3", "2"])
+Loan.create( title: "Loan 8", amount: 67500,
+ description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+ requested_by: "December 6, 2014",
+ repayments_begin: "February 4, 2015",
+ monthly_payment: 150,
+ category_ids: ["3","5"])
+Loan.create( title: "Loan 9", amount: 89100,
+ description: "Integer vel justo felis.",
+ requested_by: "December 6, 2014",
+ repayments_begin: "February 4, 2015",
+ monthly_payment: 150,
+ category_ids: ["3"])
+
+#Above you
+Loan.create( title: "Loan 10", amount: 9800,
+ description: "Lorem ipsum dolor sit amet.",
+ requested_by: "December 6, 2014",
+ repayments_begin: "February 4, 2015",
+ monthly_payment: 150,
+ category_ids: ["3", "4"])
+Loan.create( title: "Loan 11", amount: 25000,
+ description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vel justo felis.",
+ requested_by: "December 6, 2014",
+ repayments_begin: "February 4, 2015",
+ monthly_payment: 150,
+ category_ids: ["4"])
+Loan.create( title: "Loan 12", amount: 620000,
+ description: "Integer vel justo felis.",
+ requested_by: "December 6, 2014",
+ repayments_begin: "February 4, 2015",
+ monthly_payment: 150,
+ category_ids: ["4", "1"])
+
 
 #ORDERS
 #rachel_order1 = Order.create(user: rachel, order_type: 'delivery', payment_type: 'cash', address: rachel_address1, status: "ordered")
