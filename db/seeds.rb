@@ -6,51 +6,8 @@ Category.create(name: "Refugee")
 Category.create(name: "Women Owned Businesses")
 Category.create(name: "Parents")
 
-#ITEMS
 
-# #Moms Favs
-# Item.create( title: "Loan 1", price: 24000,
-#   description: "Integer vel justo felis.",
-#   category_ids: ["1"])
-# Item.create( title: "Loan 2", price: 500000,
-#   description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vel justo felis.",
-#   category_ids: ["1", "4"])
-# Item.create( title: "Loan 3", price: 19000,
-#   description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-#   category_ids: ["1"])
-#
-# #Lore
-# Item.create( title: "Loan 4", price: 75000,
-#   description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vel justo felis.",
-#   category_ids: ["2"])
-# Item.create( title: "Loan 5", price: 250000,
-#   description: "Lorem ipsum dolor sit amet.",
-#   category_ids: ["2","5"])
-# Item.create( title: "Loan 6", price: 25000,
-#   description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-#   category_ids: ["2"])
-#
-# #Afford Expensive
-# Item.create( title: "Loan 7", price: 177000,
-#   description: "Consectetur adipiscing elit. Integer vel justo felis.",
-#   category_ids: ["3", "2"])
-# Item.create( title: "Loan 8", price: 67500,
-#   description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-#   category_ids: ["3","5"])
-# Item.create( title: "Loan 9", price: 89100,
-#   description: "Integer vel justo felis.",
-#   category_ids: ["3"])
-#
-# #Above you
-# Item.create( title: "Loan 10", price: 9800,
-#   description: "Lorem ipsum dolor sit amet.",
-#   category_ids: ["3", "4"])
-# Item.create( title: "Loan 11", price: 25000,
-#   description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vel justo felis.",
-#   category_ids: ["4"])
-# Item.create( title: "Loan 12", price: 620000,
-#   description: "Integer vel justo felis.",
-#   category_ids: ["4", "1"])
+#Moms Favs
 
 # USERS
 rachel = User.create(first_name: "Rachel", last_name: "Warbelow", email: "demo+rachel@jumpstartlab.com",
@@ -76,6 +33,85 @@ rachel_address3 = Address.create(street: '101 Stout St', city: 'Denver', state: 
 jorge_address = Address.create(street: '23 Colfax Ave', city: 'Denver', state: 'CO', zip: '80205', user: jorge)
 
 users = User.all
+
+Loan.create( title: "Loan 1", amount: 24000,
+ description: "Integer vel justo felis.",
+ requested_by: "December 6, 2014",
+ repayments_begin: "February 4, 2015",
+ monthly_payment: 150,
+ category_ids: ["1"])
+Loan.create( title: "Loan 2", amount: 500000,
+ description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vel justo felis.",
+ requested_by: "December 6, 2014",
+ repayments_begin: "February 4, 2015",
+ monthly_payment: 150,
+ category_ids: ["1", "4"])
+Loan.create( title: "Loan 3", amount: 19000,
+ description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+ requested_by: "December 6, 2014",
+ repayments_begin: "February 4, 2015",
+ monthly_payment: 150,
+ category_ids: ["1"])
+
+#Lore
+Loan.create( title: "Loan 4", amount: 75000,
+ description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vel justo felis.",
+ requested_by: "December 6, 2014",
+ repayments_begin: "February 4, 2015",
+ monthly_payment: 150,
+ category_ids: ["2"])
+Loan.create( title: "Loan 5", amount: 250000,
+ description: "Lorem ipsum dolor sit amet.",
+ requested_by: "December 6, 2014",
+ repayments_begin: "February 4, 2015",
+ monthly_payment: 150,
+ category_ids: ["2","5"])
+Loan.create( title: "Loan 6", amount: 25000,
+ description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+ requested_by: "December 6, 2014",
+ repayments_begin: "February 4, 2015",
+ monthly_payment: 150,
+ category_ids: ["2"])
+
+#Afford Expensive
+Loan.create( title: "Loan 7", amount: 177000,
+ description: "Consectetur adipiscing elit. Integer vel justo felis.",
+ requested_by: "December 6, 2014",
+ repayments_begin: "February 4, 2015",
+ monthly_payment: 150,
+ category_ids: ["3", "2"])
+Loan.create( title: "Loan 8", amount: 67500,
+ description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+ requested_by: "December 6, 2014",
+ repayments_begin: "February 4, 2015",
+ monthly_payment: 150,
+ category_ids: ["3","5"])
+Loan.create( title: "Loan 9", amount: 89100,
+ description: "Integer vel justo felis.",
+ requested_by: "December 6, 2014",
+ repayments_begin: "February 4, 2015",
+ monthly_payment: 150,
+ category_ids: ["3"])
+
+#Above you
+Loan.create( title: "Loan 10", amount: 9800,
+ description: "Lorem ipsum dolor sit amet.",
+ requested_by: "December 6, 2014",
+ repayments_begin: "February 4, 2015",
+ monthly_payment: 150,
+ category_ids: ["3", "4"])
+Loan.create( title: "Loan 11", amount: 25000,
+ description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vel justo felis.",
+ requested_by: "December 6, 2014",
+ repayments_begin: "February 4, 2015",
+ monthly_payment: 150,
+ category_ids: ["4"])
+Loan.create( title: "Loan 12", amount: 620000,
+ description: "Integer vel justo felis.",
+ requested_by: "December 6, 2014",
+ repayments_begin: "February 4, 2015",
+ monthly_payment: 150,
+ category_ids: ["4", "1"])
 
 
 #ORDERS
