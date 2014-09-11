@@ -6,14 +6,12 @@
     <thead>
       <tr>
         <th>Name</th>
-        <th>Role</th>
       </tr>
     </thead>
     <tbody>
       <% @users.each do |user| %>
         <tr>
           <td><%= link_to user.name, user_path(user) %></td>
-          <td><%= user.role %></td>
         </tr>
       <% end %>
     </tbody>
