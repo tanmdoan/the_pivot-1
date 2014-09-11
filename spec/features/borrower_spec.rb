@@ -86,11 +86,10 @@ describe 'borrower experience' do
       user2
       order
       order2
-      visit root_path
     end
 
-    xit "has a borrower dashboard" do
-      expect(path).to eq(borrower_dashboard)
+    it "has a borrower dashboard" do
+      expect(current_path).to eq(borrower_path)
       expect(page).to have_content("Borrower Dashboard")
       expect(page).to have_content("Loans")
     end

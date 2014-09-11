@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
       session[:user_id] = user.id
 
       if is_borrower?
-        redirect_to session.delete(:last_page) || borrower_loans_path
+        redirect_to session.delete(:last_page) || borrower_path
       else
         redirect_to session.delete(:last_page) || root_path
       end

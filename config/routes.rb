@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   end
 
   namespace :borrower do
-    get '/' => 'orders#index'
+    get '/' => 'loans#dashboard'
 
     resources :loans do
       get '/delete_category/:category_id' => 'loans#delete_category', as: :delete_category
