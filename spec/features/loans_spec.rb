@@ -7,7 +7,8 @@ describe 'when viewing the loans' do
 													amount: 50000,
 													requested_by: "2014-09-10 13:43:00 -0600",
 													repayments_begin: "2014-09-10 13:43:00 -0600",
-													monthly_payment: 1000
+													monthly_payment: 1000,
+													user_id: 1
 													) }
 
 	context 'as a borrower' do
@@ -45,7 +46,8 @@ describe 'when viewing the loans' do
 															amount: 50000,
 															requested_by: "2014-09-10",
 															repayments_begin: "2014-09-10",
-															monthly_payment: 1000
+															monthly_payment: 1000,
+															user_id: 1
 															)
 			category = Category.create(name: "Agriculture")
 			loan.categories << category
@@ -68,7 +70,8 @@ describe 'when viewing the loans' do
                         amount: 50000,
                         requested_by: "2014-09-10",
                         repayments_begin: "2014-09-10",
-                        monthly_payment: 1000
+                        monthly_payment: 1000,
+												user_id: 1
                         )
 			category = Category.create(name: "Agriculture")
 			loan.categories << category
@@ -176,7 +179,8 @@ describe 'when viewing the loans' do
 												amount: 50000,
 												requested_by: "2014-09-10",
 												repayments_begin: "2014-09-10",
-												monthly_payment: 1000
+												monthly_payment: 1000,
+												user_id: 1
 												)
 
 			visit edit_borrower_loan_path(loan)

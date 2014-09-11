@@ -1,6 +1,6 @@
 class Borrower::LoansController < BorrowersController
 	def index
-    @loans = Loan.includes(:categories).all.decorate
+    @loans = current_user.loans.includes(:categories).all.decorate
 	end
 
 	def show
@@ -12,7 +12,7 @@ class Borrower::LoansController < BorrowersController
 	end
 
 	def create
-		@loan = Loan.new(loan_params)
+		@loan = current_user.loans.new(loan_params)
 		if @loan.save
 			redirect_to borrower_loans_path
 		else
@@ -21,6 +21,7 @@ class Borrower::LoansController < BorrowersController
 	end
 
 	def edit
+		# FIXME fix security issue
     @loan = Loan.find(params[:id]).decorate
     @categories = Category.all
 	end

@@ -4,7 +4,7 @@
     <% @categories.each do |category| %>
       <span class="category-name">- <%= category.name %> -</span>
       <div class="donuts transitions-enabled">
-        <% category.items.each do |loan| %>
+        <% category.loans.each do |loan| %>
           <% unless loan.retired? %>
 
             <div class="loan-box ">
