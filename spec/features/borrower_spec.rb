@@ -90,16 +90,20 @@ describe 'borrower experience' do
       expect(page).to have_content("Loans")
     end
 
-    xit 'can view their loans' do
+    it 'can view their loans' do
       click_on "My Loans"
       expect(page).to have_content "My Loans"
-      expect(page).to have_content "Pending"
-      expect(page).to have_content "Fulfilled"
-      expect(page).to have_link "Details"
+      expect(page).to have_content "Title"
+      expect(page).to have_content "Description"
+      expect(page).to have_content "Amount"
+      expect(page).to have_content "Categories"
+      expect(page).to have_content "Status"
     end
 
-    xit 'can view their user profile' do
-      click_on "Profile"
+    it 'can edit personal info' do
+
+      click_on "Edit Info"
+save_and_open_page
       expect(page).to have_content "My Info"
       expect(page).to have_link "Edit"
     end

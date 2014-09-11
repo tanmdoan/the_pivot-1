@@ -13,6 +13,19 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
+  def edit
+    @user = current_user
+  end
+
+  def update
+    @user = current_user
+    if @user.update(user_params)
+      redirect_to user_dashboard
+    else
+      render :edit
+    end
+  end
+
   def create
     @user = User.new(user_params)
     if @user.save
