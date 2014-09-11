@@ -17,5 +17,7 @@
 
 /coverage
 
+/public/system/loans/images
+
 /config/secrets.yml
 /config/database.yml
