@@ -10,7 +10,7 @@ describe 'borrower experience' do
 
     it 'can register a new borrower account' do
       register
-      expect(current_path).to eq root_path
+      expect(current_path).to eq borrower_path
       expect(User.count).to eq 1
       expect(User.last.role).to eq "borrower"
     end
