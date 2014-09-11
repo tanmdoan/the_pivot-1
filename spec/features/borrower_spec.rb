@@ -74,18 +74,14 @@ describe 'borrower experience' do
 
   context 'as a registered borrower' do
 
-    let(:order) { Order.create(user_id: 1, order_type: 'pickup', payment_type: 'cash', address_id: 7, status: "ordered") }
-    let(:user2) { User.create(first_name: "Nan", last_name: "Hass", email: "yourmommy@aol.com",
+    let(:borrower) { User.create(first_name: "Nan", last_name: "Hass", email: "yourmommy@aol.com",
                   password: "password", password_confirmation: "password", role: "borrower", nickname: "Nandozer") }
 
-    let(:order2) { Order.create(user_id: user2.id, order_type: 'delivery', payment_type: 'cash', address_id: 7, status: "paid") }
 
     before(:each) do
       register(first_name: 'Nando', last_name: 'Hasselhoff', email: 'yourmom@aol.com', password: '123', password_confirmation: '123')
       login(email: 'yourmom@aol.com', password: '123')
-      user2
-      order
-      order2
+      borrower
     end
 
     it "has a borrower dashboard" do
@@ -94,92 +90,47 @@ describe 'borrower experience' do
       expect(page).to have_content("Loans")
     end
 
-    xit 'can view their orders' do
-      click_on "Account"
-      click_on "My Orders"
-      expect(page).to have_content "My Orders"
-      expect(page).to have_content "pickup"
-      expect(page).to have_content "ordered"
+    xit 'can view their loans' do
+      click_on "My Loans"
+      expect(page).to have_content "My Loans"
+      expect(page).to have_content "Pending"
+      expect(page).to have_content "Fulfilled"
       expect(page).to have_link "Details"
     end
 
-    xit 'can not view other users orders' do
-      click_on "Account"
-      click_on "My Orders"
-      expect(page).to have_content "My Orders"
-      expect(page).to_not have_content "delivery"
-      expect(page).to_not have_content "paid"
-    end
-
     xit 'can view their user profile' do
-      click_on "Account"
       click_on "Profile"
       expect(page).to have_content "My Info"
+      expect(page).to have_link "Edit"
     end
 
-    xit 'can link to a details page for each order' do
-      click_on "Account"
-      click_on "My Orders"
+    xit 'can link to a details page for each loan' do
+      click_on "My Loans"
       click_link 'Details'
-      expect(current_path).to eq(order_path(order))
-    end
-
-    xit 'can see all details of an individual order' do
-      click_on "Account"
-      click_on "My Orders"
-      click_link 'Details'
-      expect(page).to have_content('Total:')
-      expect(page).to have_content(format_date(order.created_at))
-    end
-
-    xit 'can see updated order time when order is completed or cancelled' do
-      click_on "Account"
-      click_on "My Orders"
-      click_link "Details"
-      click_on "Cancel"
-      click_on "Details"
-      expect(page).to_not have_link("Cancel")
-      expect(page).to     have_content(format_date(order.updated_at))
-      expect(page).to     have_content(format_time(order.updated_at))
-    end
-
-    xit 'can view individual loan details from an order' do
-      loan = Loan.create( title: "Donut1", price: 2400,
-                          description: "Good for one 'splorer.")
-      order_loan = OrderLoan.create(loan_id: loan.id,
-                                    order_id: order.id, quantity: 5,
-                                    unit_price: 8000)
-
-      click_on "Account"
-      click_on "My Orders"
-      click_link "Details"
-      click_link 'Donut1'
       expect(current_path).to eq(loan_path(loan))
+    end
+
+    xit 'can see all details of an individual loan' do
+      click_on "My Loans"
+      click_link 'Details'
       expect(page).to have_content(loan.title)
       expect(page).to have_content(loan.description)
-    end
-
-    xit 'can view profile page' do
-      user = User.find(1)
-      click_on 'Account'
-      click_on 'Profile'
-      expect(current_path). to eq(account_path)
+      expect(page).to have_content(loan.amount)
+      expect(page).to have_content(loan.end_date)
+      expect(page).to have_content(loan.start_date)
+      expect(page).to have_content(loan.repay_start)
     end
 
     xit 'can view date joined, first name, last name, email, and nickname' do
-      user = User.find(1)
-      click_on 'Account'
       click_on 'Profile'
-      expect(page).to have_content(format_date(user.created_at))
-      expect(page).to have_content(user.first_name)
-      expect(page).to have_content(user.last_name)
-      expect(page).to have_content(user.email)
-      expect(page).to have_content(user.nickname)
+      expect(page).to have_content(format_date(borrower.created_at))
+      expect(page).to have_content(borrower.first_name)
+      expect(page).to have_content(borrower.last_name)
+      expect(page).to have_content(borrower.email)
+      expect(page).to have_content(borrower.nickname)
     end
 
     xit 'can edit account info' do
-      user = User.find(1)
-      click_on 'Account'
       click_on 'Profile'
       click_on 'Edit'
       fill_in 'First name', with: 'Carlos'
@@ -192,7 +143,6 @@ describe 'borrower experience' do
     end
 
     xit 'cannot ad a nickame of 1 characer' do
-      click_on 'Account'
       click_on 'Profile'
       click_on 'Edit'
       fill_in 'Password', with: '123'
@@ -203,7 +153,6 @@ describe 'borrower experience' do
     end
 
     xit 'cannot ad a nickame of > 32 characers' do
-      click_on 'Account'
       click_on 'Profile'
       click_on 'Edit'
       fill_in 'Password', with: '123'

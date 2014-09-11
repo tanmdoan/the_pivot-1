@@ -20,6 +20,12 @@ describe 'Authorization', type: :feature do
     end
   end
 
+  xit 'can not view other users loans' do
+    click_on "My Loans"
+    expect(page).to have_content "My Loans"
+    #visit other loan path expect flash message
+  end
+
   xit "needs more tests?" do
   end
 end
