@@ -67,7 +67,7 @@ def register_and_login_as_borrower
   login_as_borrower
 end
 
-def register_and_login_as_a_lender
+def register_and_login_as_lender
   register_as_lender
   login_as_lender
 end

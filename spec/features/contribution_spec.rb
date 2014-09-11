@@ -1,9 +1,6 @@
 require 'rails_helper'
 
 describe 'when viewing the loans' do
-  before(:each) do
-    register_and_login_as_a_lender
-  end
 
 	context 'as a lender' do
     let(:lender) { User.find_by(role: "lender") }
