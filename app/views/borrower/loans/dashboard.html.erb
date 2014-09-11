@@ -1,11 +1,14 @@
 <h1>Borrower Dashboard</h1>
-<p>
-  "Profile"
-</p>
 
 <div id="Make a loan">
   <%= link_to "Apply For A New Loan", action: "new"  %>
 </div>
+
+<p>
+  "Profile:"
+  <%= current_user.first_name %><%= current_user.last_name %>
+  <%= current_user.email %>
+</p>
 
 <div id="current_loans">
   <h3>Loans:</h3>
