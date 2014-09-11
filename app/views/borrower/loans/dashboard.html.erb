@@ -1,0 +1,19 @@
+<h1>Borrower Dashboard</h1>
+<p>
+  "Profile"
+</p>
+
+<div id="Make a loan">
+  <%= link_to "Apply For A New Loan", action: "new"  %>
+</div>
+
+<div id="current_loans">
+  <h3>Loans:</h3>
+  <% @loans.each do |loan| %>
+    <tr>
+      <td><%= link_to loan.title, borrower_loan_path(loan) %></td>
+      <td><%= loan.description %></td>
+      <td><%= loan.amount %></td>
+    </tr>
+  <% end %>
+</div>

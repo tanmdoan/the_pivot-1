@@ -3,6 +3,10 @@ class Borrower::LoansController < BorrowersController
     @loans = current_user.loans.includes(:categories).all.decorate
 	end
 
+	def dashboard
+		@loans = current_user.loans.all
+	end
+
 	def show
     @loan = Loan.find(params[:id]).decorate
 	end
