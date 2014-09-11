@@ -20,6 +20,10 @@ class Loan < ActiveRecord::Base
     update_attribute(:categories, reject_from_categories(category_id))
 	end
 
+	def amount_in_dollars
+		correct_decimal = amount / 100
+		"$ #{correct_decimal}"
+	end
 
   private
 
