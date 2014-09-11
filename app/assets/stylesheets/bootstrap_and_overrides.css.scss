@@ -71,7 +71,7 @@ $navbar-inverse-brand-color: #fff;
 	box-shadow: 10px 10px 5px #888;
 }
 
-.donuts {
+.loans {
 	margin: 0 auto;
 }
 
@@ -79,18 +79,26 @@ $navbar-inverse-brand-color: #fff;
 	margin: 10px;
 	border: 4px solid #024;
 	padding: 10px;
-  width: 340px;
+  width:  340px;
   height: 340px;
 	background-color: #E8F3FF;
 	box-shadow: 10px 10px 5px #888;
+  display :inline-block;
 }
 
 .loan-box-description {
+  position: relative;
 	width: 100%;
 	height: 100%;
   background: rgba(0, 0, 0, 0.1);
 	border: 2px solid #024;
 	padding: 1%;
+}
+
+.loan-image {
+	width: 100%;
+	height: 66%;
+	border: 2px dashed #024;
 }
 
 .loan-title {
@@ -107,18 +115,10 @@ $navbar-inverse-brand-color: #fff;
   top: 12.5%;
   margin-left: 1%;
   margin-right: 60%;
-	font-size: 0.750em;
+  font-size: 0.750em;
   background: rgb(255, 255, 255); /* fallback color */
   background: rgba(255, 255, 255, 0.5);
 }
-
-.loan-image {
-  position: relative;
-	width: 100%;
-	height: 66%;
-	border: 2px dashed #024;
-}
-
 
 .loan-box-price {
   margin-top: 1%;
