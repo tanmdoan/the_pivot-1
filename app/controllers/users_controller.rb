@@ -53,6 +53,6 @@ class UsersController < ApplicationController
 
 #this only finds one borrower...
   def borrowers
-    User.find_by(role: 'borrower')
+    User.where(role: 'borrower')
   end
 end
