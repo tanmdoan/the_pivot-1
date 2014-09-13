@@ -11,10 +11,9 @@ div.flash.error   { border: 2px solid red; 	 color: red;}
 // BODY //
 body {
  	padding-top: 85px;
- 	background-image: url('bg.png');
 }
 
-$body-bg: #eee;
+$body-bg: #F8F8FF;
 
 .page-border {
 	background-color: white;
@@ -26,21 +25,31 @@ $body-bg: #eee;
 
 // NAVBAR //
 $navbar-height: 75px;
-$navbar-inverse-bg: #024;
-$navbar-inverse-link-color: #bbb;
-$navbar-inverse-brand-color: #fff;
-
-#ele-logo {
-	margin-top: -10px;
-}
+$navbar-inverse-bg: #F8F8FF;
+$navbar-inverse-bc: #F8F8FF;
+$navbar-inverse-link-color: #000;
+$navbar-inverse-brand-color: #000;
 
 .navbar-brand {
 	font-weight: bold;
+  font-size: 43px;
+  vertical-align: middle;
+  line-height: 20px;
+  padding: 27.5px 15px;
+}
+
+.navbar-inverse{
+  border-bottom-width: 0px;
+}
+
+.navbar-fixed-top{
+  border-width: 0 0 0px;
 }
 
 .brand-text {
 	font-family: 'Aclonica', sans-serif;
 }
+
 
 // LOGIN / REGISTER //
 .login-reg-page {
@@ -53,10 +62,29 @@ $navbar-inverse-brand-color: #fff;
 }
 
 // CATEGORIES //
-#main-menu-title {
-	display: block;
-	text-align: center;
-	font-size: 25px;
+
+
+.header{
+  display: flex;
+  align-items: center;
+  background-color: #54D359
+}
+
+#header-title-left{
+  // display: inline;
+  // top: 50%;
+}
+
+#header-title-right{
+  // display: inline;
+  // top: 50%;
+}
+
+#logo {
+  width: 458px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto
 }
 
 .category-name {
@@ -69,6 +97,13 @@ $navbar-inverse-brand-color: #fff;
 	width: 100%;
 	background-color: #024;
 	box-shadow: 10px 10px 5px #888;
+}
+
+.tab-panel {
+  display: none;
+}
+.tab-panel.active {
+  display: block;
 }
 
 .loans {
@@ -142,12 +177,6 @@ $navbar-inverse-brand-color: #fff;
 a.add-loan-text:hover {
 	color: #000;
 	text-decoration: none;
-}
-
-#sticker {
-	width: 350px;
-	display: block;
-	text-align: center;
 }
 
 // CART //
