@@ -74,14 +74,13 @@ describe 'borrower experience' do
 
   context 'as a registered borrower' do
 
-    let(:borrower) { User.create(first_name: "Nan", last_name: "Hass", email: "yourmommy@aol.com",
-                  password: "password", password_confirmation: "password", role: "borrower", nickname: "Nandozer") }
+    let(:borrower) { User.create(first_name: "Gen", last_name: "Casagrande", email: "yourmom123@aol.com",
+                  password: "password", password_confirmation: "password", role: "borrower", nickname: "gen") }
 
 
     before(:each) do
-      register(first_name: 'Nando', last_name: 'Hasselhoff', email: 'yourmom@aol.com', password: '123', password_confirmation: '123')
+      @user = User.create!(first_name: 'Nando', last_name: 'Hasselhoff', email: 'yourmom@aol.com', password: '123', password_confirmation: '123', role: "borrower")
       login(email: 'yourmom@aol.com', password: '123')
-      borrower
     end
 
     it "has a borrower dashboard" do
@@ -90,18 +89,40 @@ describe 'borrower experience' do
       expect(page).to have_content("Loans")
     end
 
-    xit 'can view their loans' do
+    it 'can view their loans' do
       click_on "My Loans"
       expect(page).to have_content "My Loans"
-      expect(page).to have_content "Pending"
-      expect(page).to have_content "Fulfilled"
-      expect(page).to have_link "Details"
+      expect(page).to have_content "Title"
+      expect(page).to have_content "Description"
+      expect(page).to have_content "Amount"
+      expect(page).to have_content "Categories"
+      expect(page).to have_content "Status"
     end
 
-    xit 'can view their user profile' do
-      click_on "Profile"
-      expect(page).to have_content "My Info"
-      expect(page).to have_link "Edit"
+    it 'can view date joined, first name, last name, email, and nickname' do
+      click_on "Logout"
+      register
+      login
+      expect(page).to have_content(borrower.first_name)
+      expect(page).to have_content(borrower.last_name)
+      expect(page).to have_content(borrower.email)
+    end
+
+    it 'can view edit personal info' do
+      click_on "Edit Info"
+      expect(current_path).to eq edit_user_path(@user)
+      expect(page).to have_button "Update"
+    end
+
+    it 'can edit account info' do
+      click_on "Edit Info"
+      fill_in 'First name', with: 'Carlos'
+      fill_in 'Password', with: '123'
+      fill_in 'Password confirmation', with: '123'
+      click_on 'Update'
+      expect(current_path).to eq(borrower_path)
+      expect(page).not_to have_content('Nando')
+      expect(page).to have_content('Carlos')
     end
 
     xit 'can link to a details page for each loan' do
@@ -119,27 +140,6 @@ describe 'borrower experience' do
       expect(page).to have_content(loan.end_date)
       expect(page).to have_content(loan.start_date)
       expect(page).to have_content(loan.repay_start)
-    end
-
-    xit 'can view date joined, first name, last name, email, and nickname' do
-      click_on 'Profile'
-      expect(page).to have_content(format_date(borrower.created_at))
-      expect(page).to have_content(borrower.first_name)
-      expect(page).to have_content(borrower.last_name)
-      expect(page).to have_content(borrower.email)
-      expect(page).to have_content(borrower.nickname)
-    end
-
-    xit 'can edit account info' do
-      click_on 'Profile'
-      click_on 'Edit'
-      fill_in 'First name', with: 'Carlos'
-      fill_in 'Password', with: '123'
-      fill_in 'Password confirmation', with: '123'
-      click_on 'Update User'
-      expect(current_path).to eq(account_path)
-      expect(page).not_to have_content('Nando')
-      expect(page).to have_content('Carlos')
     end
 
     xit 'cannot ad a nickame of 1 characer' do

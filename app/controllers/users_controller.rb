@@ -13,6 +13,23 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
+  def edit
+    @user = current_user
+  end
+
+  def update
+    @user = current_user
+    if @user.update(user_params)
+      if current_user.role == 'borrower'
+        redirect_to borrower_path
+      else
+        redirect_to lender_dashboard
+      end
+    else
+      render :edit
+    end
+  end
+
   def create
     @user = User.new(user_params)
     if @user.save
@@ -34,7 +51,8 @@ class UsersController < ApplicationController
     params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, :nickname, :role)
   end
 
+#this only finds one borrower...
   def borrowers
-    User.find_by(role: 'borrower')
+    User.where(role: 'borrower')
   end
 end

@@ -4,8 +4,8 @@
   <%= link_to "Apply For A New Loan", action: "new"  %>
 </div>
 
-<p>
-  "Profile:"
+<p id="profile">
+  <%= link_to "Edit Info", edit_user_path(current_user) %>
   <%= current_user.first_name %><%= current_user.last_name %>
   <%= current_user.email %>
 </p>
