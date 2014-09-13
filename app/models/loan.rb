@@ -23,7 +23,12 @@ class Loan < ActiveRecord::Base
 
 	def amount_in_dollars
 		correct_decimal = amount / 100
-		"$ #{correct_decimal}"
+		"$#{correct_decimal}"
+	end
+
+	def monthly_payment_in_dollars
+		correct_decimal = monthly_payment / 100
+		"$#{correct_decimal}"
 	end
 
   private
