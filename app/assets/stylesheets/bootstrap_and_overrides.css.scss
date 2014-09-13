@@ -30,10 +30,6 @@ $navbar-inverse-bg: #024;
 $navbar-inverse-link-color: #bbb;
 $navbar-inverse-brand-color: #fff;
 
-#ele-logo {
-	margin-top: -10px;
-}
-
 .navbar-brand {
 	font-weight: bold;
 }
@@ -53,10 +49,22 @@ $navbar-inverse-brand-color: #fff;
 }
 
 // CATEGORIES //
-#main-menu-title {
-	display: block;
-	text-align: center;
-	font-size: 25px;
+
+#header-title-left{
+  display: inline;
+  text-align: right;
+}
+
+#header-title-right{
+  display: inline;
+  text-align: left;
+}
+
+#logo {
+  width: 458px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto
 }
 
 .category-name {
@@ -142,12 +150,6 @@ $navbar-inverse-brand-color: #fff;
 a.add-loan-text:hover {
 	color: #000;
 	text-decoration: none;
-}
-
-#sticker {
-	width: 350px;
-	display: block;
-	text-align: center;
 }
 
 // CART //
