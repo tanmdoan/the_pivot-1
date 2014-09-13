@@ -49,15 +49,24 @@ $navbar-inverse-brand-color: #fff;
 }
 
 // CATEGORIES //
+.header{
+  display: flex;
+  align-items: center;
+}
+
+.row { // add a new class to your row and target your newest class
+    display: flex;
+    align-items: center;
+}
 
 #header-title-left{
   display: inline;
-  text-align: right;
+  top: 50%;
 }
 
 #header-title-right{
   display: inline;
-  text-align: left;
+  top: 50%;
 }
 
 #logo {
