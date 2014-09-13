@@ -20,7 +20,11 @@ class UsersController < ApplicationController
   def update
     @user = current_user
     if @user.update(user_params)
-      redirect_to user_dashboard
+      if current_user.role == 'borrower'
+        redirect_to borrower_path
+      else
+        redirect_to lender_dashboard
+      end
     else
       render :edit
     end
@@ -47,6 +51,7 @@ class UsersController < ApplicationController
     params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, :nickname, :role)
   end
 
+#this only finds one borrower...
   def borrowers
     User.find_by(role: 'borrower')
   end

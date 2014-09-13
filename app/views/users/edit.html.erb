@@ -10,8 +10,10 @@
         <%= f.text_field     :nickname %><br/>
         <%= f.label          :email %><br/>
         <%= f.text_field     :email %><br/>
-        <%= f.hidden_field     :password %><br/>
-        <%= f.hidden_field     :password_confirmation %><br/>
+        <%= f.label          :password %><br/>
+        <%= f.password_field :password %><br/>
+        <%= f.label          :password_confirmation %><br/>
+        <%= f.password_field :password_confirmation %><br/>
 
         <%= f.submit "Update", class: "btn btn-primary" %>
       <% end %>
