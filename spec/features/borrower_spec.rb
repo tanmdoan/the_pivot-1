@@ -100,12 +100,20 @@ describe 'borrower experience' do
       expect(page).to have_content "Status"
     end
 
-    it 'can edit personal info' do
-
-      click_on "Edit Info"
-save_and_open_page
+    it 'can view edit personal info' do
       expect(page).to have_content "My Info"
-      expect(page).to have_link "Edit"
+      expect(page).to have_button "Update"
+    end
+
+    it 'can edit account info' do
+      click_on "Edit Info"
+      fill_in 'First name', with: 'Carlos'
+      fill_in 'Password', with: '123'
+      fill_in 'Password confirmation', with: '123'
+      click_on 'Update'
+      expect(current_path).to eq(borrower_path)
+      expect(page).not_to have_content('Nando')
+      expect(page).to have_content('Carlos')
     end
 
     xit 'can link to a details page for each loan' do
@@ -132,18 +140,6 @@ save_and_open_page
       expect(page).to have_content(borrower.last_name)
       expect(page).to have_content(borrower.email)
       expect(page).to have_content(borrower.nickname)
-    end
-
-    xit 'can edit account info' do
-      click_on 'Profile'
-      click_on 'Edit'
-      fill_in 'First name', with: 'Carlos'
-      fill_in 'Password', with: '123'
-      fill_in 'Password confirmation', with: '123'
-      click_on 'Update User'
-      expect(current_path).to eq(account_path)
-      expect(page).not_to have_content('Nando')
-      expect(page).to have_content('Carlos')
     end
 
     xit 'cannot ad a nickame of 1 characer' do
