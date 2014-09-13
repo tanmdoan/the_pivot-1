@@ -4,6 +4,7 @@
   <title>Keevahh</title>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
   <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
@@ -18,9 +19,9 @@
 	<% end %>
 
   <div class= "container-fluid header" >
-    <h1 id="header-title-left" class="col-md-4 text-center">Giving a little</h1>
+    <h1 id="header-title-left" class="col-md-4 text-center">Giving a <em>little</em></h1>
     <span id ="logo" class="col-md-4"><img src="/assets/kevah.png" style="padding-top: 45px" height="100%" width="100%" /></span>
-    <h1 id="header-title-right" class="col-md-4 text-center">Can mean a Lot</h1>
+    <h1 id="header-title-right" class="col-md-4 text-center">Can mean <strong>A Lot</strong></h1>
   </div>
 
 	<div class="container-fluid">
@@ -38,5 +39,6 @@
 			<p>A <%= link_to "Turing.io", "http://www.turing.io", id: "turing-link" %> project.</p>
 		</div>
 	</footer>
+
 </body>
 </html>
