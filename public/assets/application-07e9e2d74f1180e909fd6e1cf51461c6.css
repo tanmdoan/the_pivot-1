@@ -5547,7 +5547,7 @@ tbody.collapse.in {
 .navbar-fixed-bottom {
   bottom: 0;
   margin-bottom: 0;
-  border-width: 1px 0 0;
+  border-width: 0px 0 0;
 }
 
 /* line 164, /Users/hildenton/.rvm/rubies/ruby-2.1.2/lib/ruby/gems/2.1.0/gems/bootstrap-sass-3.2.0.1/assets/stylesheets/bootstrap/_navbar.scss */
@@ -5579,7 +5579,7 @@ tbody.collapse.in {
   margin-bottom: 20.5px;
   background-color: transparent;
   background-image: none;
-  border: 1px solid transparent;
+  border: 0px solid transparent;
   border-radius: 4px;
 }
 /* line 203, /Users/hildenton/.rvm/rubies/ruby-2.1.2/lib/ruby/gems/2.1.0/gems/bootstrap-sass-3.2.0.1/assets/stylesheets/bootstrap/_navbar.scss */
