@@ -8,7 +8,7 @@ class Borrower::LoansController < BorrowersController
 	end
 
 	def show
-    @loan = Loan.find(params[:id]).decorate
+    @loan = current_user.loans.find(params[:id]).decorate
 	end
 
 	def new
@@ -25,13 +25,12 @@ class Borrower::LoansController < BorrowersController
 	end
 
 	def edit
-		# FIXME fix security issue
-    @loan = Loan.find(params[:id]).decorate
+    @loan = current_user.loans.find(params[:id]).decorate
     @categories = Category.all
 	end
 
 	def update
-    @loan = Loan.find(params[:id]).decorate
+    @loan = current_user.loans.find(params[:id]).decorate
 		if @loan.update(loan_params)
 			redirect_to borrower_loans_path
 		else
@@ -54,7 +53,7 @@ class Borrower::LoansController < BorrowersController
 	end
 
 	def destroy
-		Loan.find(params[:id]).destroy
+		current_user.loans.find(params[:id]).destroy
 		redirect_to borrower_loans_path
 	end
 
