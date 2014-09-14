@@ -45,7 +45,7 @@ $(document).ready(function(){
   });
 
   $("#order_order_type_delivery").on("click", function() {
-    $("#address-selector").slideDown(); 
+    $("#address-selector").slideDown();
   });
 
   $("#order_payment_type_cash").on("click", function() {
@@ -53,7 +53,7 @@ $(document).ready(function(){
   });
 
   $("#order_payment_type_credit").on("click", function() {
-    $("#payment-selector").slideDown(); 
+    $("#payment-selector").slideDown();
   });
 
   $("#saved-address-selector").hide();
