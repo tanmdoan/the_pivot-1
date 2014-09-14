@@ -77,10 +77,20 @@ describe 'borrower experience' do
     let(:borrower) { User.create(first_name: "Gen", last_name: "Casagrande", email: "yourmom123@aol.com",
                   password: "password", password_confirmation: "password", role: "borrower", nickname: "gen") }
 
+  before(:each) do
+    @loan = Loan.create!(id: 1,
+												title: 'Buy a cow',
+												description: 'Need to buy a milking cow for our farm',
+												amount: 50000,
+												requested_by: "2014-09-10 13:43:00 -0600",
+												repayments_begin: "2014-09-10 13:43:00 -0600",
+												monthly_payment: 1000,
+												user_id: 99
+												)
 
-    before(:each) do
-      @user = User.create!(first_name: 'Nando', last_name: 'Hasselhoff', email: 'yourmom@aol.com', password: '123', password_confirmation: '123', role: "borrower")
-      login(email: 'yourmom@aol.com', password: '123')
+
+      @user = User.create!(id: 99, first_name: 'Nando', last_name: 'Hasselhoff', email: 'nando@aol.com', password: '123', password_confirmation: '123', role: "borrower")
+      login(email: 'nando@aol.com', password: '123')
     end
 
     it "has a borrower dashboard" do
@@ -125,41 +135,41 @@ describe 'borrower experience' do
       expect(page).to have_content('Carlos')
     end
 
-    xit 'can link to a details page for each loan' do
-      click_on "My Loans"
-      click_link 'Details'
-      expect(current_path).to eq(loan_path(loan))
+    it 'can see list of thier loan(s)' do
+      expect(page).to have_content(@loan.title)
+      expect(page).to have_content(@loan.description)
+      expect(page).to have_content(@loan.amount)
     end
 
-    xit 'can see all details of an individual loan' do
-      click_on "My Loans"
-      click_link 'Details'
-      expect(page).to have_content(loan.title)
-      expect(page).to have_content(loan.description)
-      expect(page).to have_content(loan.amount)
-      expect(page).to have_content(loan.end_date)
-      expect(page).to have_content(loan.start_date)
-      expect(page).to have_content(loan.repay_start)
+
+
+    it 'can link to a details page for each loan' do
+      click_link "#{@loan.title}"
+      expect(current_path).to eq(borrower_loan_path(@loan))
+      expect(page).to have_content(@loan.title)
+      expect(page).to have_content(@loan.description)
+      expect(page).to have_content(@loan.requested_by)
+      expect(page).to have_content(@loan.amount_in_dollars)
+      expect(page).to have_content(@loan.repayments_begin)
+      expect(page).to have_content(@loan.monthly_payment_in_dollars)
     end
 
-    xit 'cannot ad a nickame of 1 characer' do
-      click_on 'Profile'
+    it 'cannot add a nickame of 1 characer' do
       click_on 'Edit'
       fill_in 'Password', with: '123'
       fill_in 'Password confirmation', with: '123'
       fill_in 'Nickname', with: 'a'
-      click_on 'Update User'
-      expect(page).to have_content 'minimum is 2 characters'
+      click_on 'Update'
+      expect(current_path).to eq user_path(@user)
     end
 
-    xit 'cannot ad a nickame of > 32 characers' do
-      click_on 'Profile'
+    it 'cannot add a nickame of > 32 characers' do
       click_on 'Edit'
       fill_in 'Password', with: '123'
       fill_in 'Password confirmation', with: '123'
       fill_in 'Nickname', with: (0..33).map{'a'}.join
-      click_on 'Update User'
-      expect(page).to have_content 'maximum is 32 characters'
+      click_on 'Update'
+      expect(current_path).to eq user_path(@user)
     end
   end
 end

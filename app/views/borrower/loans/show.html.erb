@@ -8,8 +8,16 @@
     <dd><%= @loan.description %></dd>
     <dt><strong>Categories:</strong></dt>
     <dd><%= @loan.display_categories %></dd>
-    <dt><strong>Price:</strong></dt>
-    <dd><%= @loan.unit_price_dollars %></dd>
+    <dt><strong>Amount:</strong></dt>
+    <dd><%= @loan.amount_in_dollars %></dd>
+    <dt><strong>Your monthly payment:</strong></dt>
+    <dd><%= @loan.monthly_payment_in_dollars %></dd>
+    <dt><strong>Requested By:</strong></dt>
+    <dd><%= @loan.requested_by %></dd>
+    <dt><strong>Repayments begin:</strong></dt>
+    <dd><%= @loan.repayments_begin %></dd>
+    <dt><strong>Loan Status</strong></dt>
+    <dd><%= @loan.aasm_state %></dd>
     <dt><strong>Image:</strong></dt>
     <dd><%= image_tag @loan.image.url(:small) %></dd>
   </dl>

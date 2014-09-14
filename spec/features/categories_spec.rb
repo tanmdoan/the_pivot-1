@@ -34,7 +34,7 @@ describe 'when viewing the categories' do
 		it "can see loans by categories" do
 			expect(page).to have_content(category.name)
 			expect(page).to have_content(loan.title)
-			expect(page).to have_content(loan.amount)
+			expect(page).to have_content(loan.amount_in_dollars)
 		end
 	end
 end
