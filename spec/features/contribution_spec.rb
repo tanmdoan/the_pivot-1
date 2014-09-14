@@ -3,22 +3,17 @@ require 'rails_helper'
 describe 'when viewing the loans' do
 
 	context 'as a lender' do
-    let(:lender) { User.find_by(role: "lender") }
-		let(:contribution)  { Contribution.create(user_id: lender.id, loan_id: 1, amount: 25) }
-		let(:loan) { Loan.create(title: 'Cow1', description: 'Clearly, the best cow', price: 4300) }
-		let(:loan_contribution) { LoanContribution.create(contribution_id: contribution.id, loan_id: loan.id, lender_id: lender.id, amount: 2) }
+		let(:loan) { Loan.create(title: 'Cow1', description: 'Clearly, the best cow', amount: 4300) }
 
 		before(:each) do
-      lender
-      contribution
+			register_and_login_as_lender
+      lender = User.last
+      contribution = Contribution.create(user_id: lender.id, loan_id: 1, amount: 25)
       loan
-      loan_contribution
-			visit lender_contributions_path(lender)
+      loan_contribution = LoanContribution.create(contribution_id: contribution.id, loan_id: loan.id)
 		end
 
-		xit 'displays orders' do
-			expect(page).to have_content("pickup")
-			expect(page).to have_content("ordered")
+		it 'can choose a loan and make a contribution to it' do
 		end
 
 		xit 'can edit an order' do
