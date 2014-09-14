@@ -2,20 +2,19 @@ require 'rails_helper'
 
 describe 'when viewing the loans' do
 
-	let(:loan) { Loan.create(title: 'Buy a cow',
-													description: 'Need to buy a milking cow for our farm',
-													amount: 50000,
-													requested_by: "2014-09-10 13:43:00 -0600",
-													repayments_begin: "2014-09-10 13:43:00 -0600",
-													monthly_payment: 1000,
-													user_id: 1
-													) }
-
 	context 'as a borrower' do
 
 		before(:each) do
 			register_and_login_as_borrower
-			loan
+			@borrower = User.last
+			@loan = Loan.create(title: 'Buy a cow',
+															description: 'Need to buy a milking cow for our farm',
+															amount: 50000,
+															requested_by: "2014-09-10 13:43:00 -0600",
+															repayments_begin: "2014-09-10 13:43:00 -0600",
+															monthly_payment: 1000,
+															user_id: @borrower.id
+															)
 			visit borrower_loans_path
 		end
 
@@ -30,28 +29,20 @@ describe 'when viewing the loans' do
 		end
 
 		it 'has a link to an loan' do
-			expect(page).to have_link 'Buy a cow', href: borrower_loan_path(loan)
+			expect(page).to have_link 'Buy a cow', href: borrower_loan_path(@loan)
 		end
 
 		it 'links successfully to loan' do
 			click_link 'Buy a cow'
-			expect(current_path).to eq(borrower_loan_path(loan))
+			expect(current_path).to eq(borrower_loan_path(@loan))
 			expect(page).to have_content 'Buy a cow'
 			expect(page).to have_content 'Need to buy a milking cow for our farm'
 		end
 
 		it 'shows the category associated with an loan' do
-			loan = Loan.create!(title: 'Buy a cow',
-															description: 'Need to buy a milking cow for our farm',
-															amount: 50000,
-															requested_by: "2014-09-10",
-															repayments_begin: "2014-09-10",
-															monthly_payment: 1000,
-															user_id: 1
-															)
 			category = Category.create(name: "Agriculture")
-			loan.categories << category
-			category.loans << loan
+			@loan.categories << category
+			category.loans << @loan
 			visit borrower_loans_path
 			expect(page).to have_content "Buy a cow"
 			expect(page).to have_content "Agriculture"
@@ -59,23 +50,15 @@ describe 'when viewing the loans' do
 
 		it 'links successfully to loan' do
 			click_link 'Buy a cow'
-			expect(current_path).to eq(borrower_loan_path(loan))
+			expect(current_path).to eq(borrower_loan_path(@loan))
 			expect(page).to have_content 'Buy a cow'
 			expect(page).to have_content 'Need to buy a milking cow for our farm'
 		end
 
 		it 'shows the category associated with an loan' do
-			loan = Loan.create!(title: 'Buy a cow',
-                        description: 'Need to buy a milking cow for our farm',
-                        amount: 50000,
-                        requested_by: "2014-09-10",
-                        repayments_begin: "2014-09-10",
-                        monthly_payment: 1000,
-												user_id: 1
-                        )
 			category = Category.create(name: "Agriculture")
-			loan.categories << category
-			category.loans << loan
+			@loan.categories << category
+			category.loans << @loan
 			visit borrower_loans_path
 			expect(page).to have_content "Buy a cow"
 			expect(page).to have_content "Agriculture"
@@ -174,16 +157,7 @@ describe 'when viewing the loans' do
 		end
 
 		it 'can update an loan' do
-			loan = Loan.create!(title: 'Buy a pig',
-												description: 'Need to buy a pig for ham',
-												amount: 50000,
-												requested_by: "2014-09-10",
-												repayments_begin: "2014-09-10",
-												monthly_payment: 1000,
-												user_id: 1
-												)
-
-			visit edit_borrower_loan_path(loan)
+			visit edit_borrower_loan_path(@loan)
 			fill_in "Title", with: "Fancy New Donut"
 			fill_in "Description", with: "It's pretty fancy"
 			fill_in "Amount", with: "800"
@@ -195,68 +169,38 @@ describe 'when viewing the loans' do
 			expect(page).not_to have_content "Just like, wow."
 		end
 
-		it 'cannot update an loan without a title' do
-			loan = Loan.create!(title: 'Buy a pig',
-												description: 'Need to buy a pig for ham',
-												amount: 50000,
-												requested_by: "2014-09-10",
-												repayments_begin: "2014-09-10",
-												monthly_payment: 1000
-												)
-
-			visit edit_borrower_loan_path(loan)
+		it 'cannot update a loan without a title' do
+			visit edit_borrower_loan_path(@loan)
 			fill_in "Title", with: ""
 			fill_in "Description", with: "It's pretty fancy"
 			fill_in "Amount", with: "800"
 			click_button "Update Loan"
-			expect(current_path).to eq(borrower_loan_path(loan))
+			expect(current_path).to eq(borrower_loan_path(@loan))
 			expect(page).to have_content 'blank'
 		end
 
-		it 'cannot update an loan without a description' do
-			loan = Loan.create!(title: 'Buy a pig',
-												description: 'Need to buy a pig for ham',
-												amount: 50000,
-												requested_by: "2014-09-10",
-												repayments_begin: "2014-09-10",
-												monthly_payment: 1000
-												)
-
-			visit edit_borrower_loan_path(loan)
+		it 'cannot update a loan without a description' do
+			visit edit_borrower_loan_path(@loan)
 			fill_in "Title", with: "Poopers"
 			fill_in "Description", with: ""
 			fill_in "Amount", with: "800"
 			click_button "Update Loan"
-			expect(current_path).to eq(borrower_loan_path(loan))
+			expect(current_path).to eq(borrower_loan_path(@loan))
 			expect(page).to have_content 'blank'
 		end
 
-		it 'cannot update an loan without a Amount' do
-			loan = Loan.create!(title: 'Buy a pig',
-												description: 'Need to buy a pig for ham',
-												amount: 50000,
-												requested_by: "2014-09-10",
-												repayments_begin: "2014-09-10",
-												monthly_payment: 1000
-												)
-			visit edit_borrower_loan_path(loan)
+		it 'cannot update a loan without a Amount' do
+			visit edit_borrower_loan_path(@loan)
 			fill_in "Title", with: "Poopers"
 			fill_in "Description", with: "Tasty"
 			fill_in "Amount", with: ""
 			click_button "Update Loan"
-			expect(current_path).to eq(borrower_loan_path(loan))
+			expect(current_path).to eq(borrower_loan_path(@loan))
 			expect(page).to have_content 'blank'
 		end
 
 		it 'can delete an loan' do
-			loan = Loan.create!(title: 'Buy a pig',
-                        description: 'Need to buy a pig for ham',
-                        amount: 50000,
-                        requested_by: "2014-09-10",
-                        repayments_begin: "2014-09-10",
-                        monthly_payment: 1000
-                        )
-			visit borrower_loan_path(loan)
+			visit borrower_loan_path(@loan)
 			click_link "Delete"
 			expect(current_path).to eq(borrower_loans_path)
 			expect(page).not_to have_content "Buy a pig"
@@ -266,31 +210,17 @@ describe 'when viewing the loans' do
 		it 'shows categories on edit loan page' do
 			category = Category.create(id: 1, name: 'Test Category')
 			category = Category.create(id: 2, name: 'Testy Category')
-			loan = Loan.create!(title: 'Buy a piglet',
-												description: 'Need to buy a piglet for ham',
-												amount: 50000,
-												requested_by: "2014-09-10",
-												repayments_begin: "2014-09-10",
-												monthly_payment: 1000,
-												category_ids: ["1", "2"]
-												)
-			visit edit_borrower_loan_path(loan)
+			@loan.category_ids = [1,2]
+			visit edit_borrower_loan_path(@loan)
 			expect(page).to have_content "Test Category"
 			expect(page).to have_content "Testy Category"
 		end
 
 		it 'has can delete a category from loan' do
 			category = Category.create(name: 'Test Category')
-			loan = Loan.create!(title: 'Buy a piglet',
-												description: 'Need to buy a piglet for ham',
-												amount: 50000,
-												requested_by: "2014-09-10",
-												repayments_begin: "2014-09-10",
-												monthly_payment: 1000												)
+			LoanCategory.create(loan: @loan, category: category)
 
-			LoanCategory.create(loan: loan, category: category)
-
-			visit edit_borrower_loan_path(loan)
+			visit edit_borrower_loan_path(@loan)
 			expect(page).to have_content "Test Category"
 			click_link "Delete"
 			expect(page).to_not have_content "Delete"
@@ -301,7 +231,7 @@ describe 'when viewing the loans' do
 			Category.create(name: 'Testy Cat')
 			Category.create(name: 'Tasty')
 
-			visit edit_borrower_loan_path(loan)
+			visit edit_borrower_loan_path(@loan)
 			expect(page).to_not have_content 'Delete'
 			click_link "Tasty"
 			expect(page).to have_content 'Delete'
