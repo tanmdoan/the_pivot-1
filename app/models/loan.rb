@@ -12,10 +12,44 @@ class Loan < ActiveRecord::Base
 	has_many :loan_categories
 	has_many :categories, through: :loan_categories
 	has_many :orders, through: :order_loans
+	has_many :contributions
 	belongs_to :user
 
 	has_attached_file :image, styles: {:small => "150x150>", :thumb => "100x100>"}, default_url: "/assets/images/happy-borrower.jpg"
 	validates_attachment :image, content_type: {content_type: ["image/jpg", "image/jpeg", "image/png", "image/gif"]}
+
+	include AASM
+
+	aasm do
+    state :request, initial: true
+    state :fulfilled
+    state :repayment
+    state :repaid
+
+    event :fulfill do
+      transitions from: :request, to: :fulfilled
+    end
+
+    event :start_repay do
+      transitions from: :fulfilled, to: :repayment
+    end
+
+    event :pay_off do
+      transitions from: :repayment, to: :repaid
+    end
+  end
+
+	def contributed
+		self.contributions.inject(0) { |i, contribution| i += contribution.amount.to_i }
+	end
+
+	def pending
+		self.amount - self.contributed
+	end
+
+	def progress
+		self.contributed / self.amount
+	end
 
 	def remove_category(category_id)
     update_attribute(:categories, reject_from_categories(category_id))
