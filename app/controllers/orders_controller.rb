@@ -2,11 +2,11 @@ class OrdersController < ApplicationController
   before_filter :check_user
 
   def index
-    @orders = Order.current_orders(current_user).decorate
+    @orders = current_user.orders.decorate
   end
 
   def show
-    @order = Order.includes([:order_items, :items]).find_by(id: params[:id], user: current_user)
+    @order = current_user.orders.includes([:order_items, :items]).find_by(id: params[:id])
 
     if @order
       @order = @order.decorate
@@ -42,7 +42,7 @@ class OrdersController < ApplicationController
   end
 
   def cancel
-    @order = Order.find_by(id: params[:order_id], user: current_user)
+    @order = current_user.orders.find_by(id: params[:order_id])
 
     if @order
       @order.cancel

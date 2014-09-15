@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140911014714) do
+ActiveRecord::Schema.define(version: 20140914182148) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,9 +40,44 @@ ActiveRecord::Schema.define(version: 20140911014714) do
     t.datetime "updated_at"
   end
 
+  create_table "contributions", force: true do |t|
+    t.string   "amount"
+    t.integer  "user_id"
+    t.integer  "loan_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "item_categories", force: true do |t|
+    t.integer  "item_id"
+    t.integer  "category_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "items", force: true do |t|
+    t.string   "title"
+    t.string   "description"
+    t.integer  "price"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+    t.boolean  "enabled",            default: true
+  end
+
   create_table "loan_categories", force: true do |t|
     t.integer  "loan_id"
     t.integer  "category_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "loan_contributions", force: true do |t|
+    t.integer  "loan_id"
+    t.integer  "contribution_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -62,6 +97,15 @@ ActiveRecord::Schema.define(version: 20140911014714) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
+  end
+
+  create_table "order_items", force: true do |t|
+    t.integer  "item_id"
+    t.integer  "quantity"
+    t.integer  "unit_price"
+    t.integer  "order_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "order_loans", force: true do |t|

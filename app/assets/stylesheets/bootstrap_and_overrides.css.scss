@@ -1,7 +1,4 @@
 // FONTS //
-@import url(http://fonts.googleapis.com/css?family=Ubuntu:400,700);
-@import url(http://fonts.googleapis.com/css?family=Parisienne);
-@import url(http://fonts.googleapis.com/css?family=Aclonica);
 $font-family-sans-serif: 'Aclonica', sans-serif;
 
 // FLASH MSG //
@@ -24,11 +21,13 @@ $body-bg: #F8F8FF;
 }
 
 // NAVBAR //
+
 $navbar-height: 75px;
 $navbar-inverse-bg: #F8F8FF;
 $navbar-inverse-bc: #F8F8FF;
 $navbar-inverse-link-color: #000;
 $navbar-inverse-brand-color: #000;
+
 
 .navbar-brand {
 	font-weight: bold;
@@ -44,6 +43,10 @@ $navbar-inverse-brand-color: #000;
 
 .navbar-fixed-top{
   border-width: 0 0 0px;
+}
+
+.navbar-fixed-top-border{
+  border-width: 0 0 15px;
 }
 
 .brand-text {
@@ -272,3 +275,6 @@ a.add-loan-text:hover {
 // IMPORTS //
 @import "bootstrap-sprockets";
 @import 'bootstrap';
+@import url(http://fonts.googleapis.com/css?family=Ubuntu:400,700);
+@import url(http://fonts.googleapis.com/css?family=Parisienne);
+@import url(http://fonts.googleapis.com/css?family=Aclonica);

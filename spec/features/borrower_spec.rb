@@ -60,8 +60,6 @@ describe 'borrower experience' do
     it 'cannot backdoor to borrower pages' do
       visit borrower_loans_path
       expect(current_path).to eq(login_path)
-      visit borrower_categories_path
-      expect(current_path).to eq(login_path)
     end
 
     it 'cannot register with a nickname of 1 character or greater than 32 characters' do

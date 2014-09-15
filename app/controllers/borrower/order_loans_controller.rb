@@ -1,17 +1,17 @@
 class Borrower::OrderLoansController < BorrowersController
-  def destroy
-    @order_loan = OrderLoan.find(params[:id])
-    order = Order.find(@order_loan.order_id)
-    @order_loan.destroy
-    redirect_to edit_borrower_order_path(order)
-  end
-
-  def update
-    @order_loan = OrderLoan.find(params[:id])
-    order = Order.find(@order_loan.order_id)
-    @order_loan.update(order_loan_params)
-    redirect_to edit_borrower_order_path(order)
-  end
+  # def destroy
+  #   @order_loan = OrderLoan.find(params[:id])
+  #   order = Order.find(@order_loan.order_id)
+  #   @order_loan.destroy
+  #   redirect_to edit_borrower_order_path(order)
+  # end
+  #
+  # def update
+  #   @order_loan = OrderLoan.find(params[:id])
+  #   order = Order.find(@order_loan.order_id)
+  #   @order_loan.update(order_loan_params)
+  #   redirect_to edit_borrower_order_path(order)
+  # end
 
   private
 
