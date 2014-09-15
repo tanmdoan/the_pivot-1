@@ -51,6 +51,10 @@ class Loan < ActiveRecord::Base
 		self.contributed / self.amount
 	end
 
+	def contribution_from(current_user)
+		# self.contributed.where(user_id: current_user.id)
+	end
+
 	def remove_category(category_id)
     update_attribute(:categories, reject_from_categories(category_id))
 	end

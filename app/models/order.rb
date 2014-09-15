@@ -17,11 +17,9 @@ class Order < ActiveRecord::Base
 
   def self.new_with_loans(params, cart)
     order = new(params)
-    loans = loan.where(id: cart.keys)
+    loans = Loan.where(id: cart.keys)
     cart.each do |loan, quantity|
-      order.order_loans.new(loan_id: loan,
-                            quantity: quantity,
-                            unit_price: loans.detect { |x| x.id == loan.to_i }.price)
+      order.order_loans.new(loan_id: loan)
     end
     order
   end
@@ -31,7 +29,7 @@ class Order < ActiveRecord::Base
   end
 
   def total
-    @total ||= order_loans.inject(0) { |sum, order_loan| sum += (order_loan.unit_price * order_loan.quantity) }
+    @total ||= order_loans.inject(0) { |sum, order_loan| sum += (order_loan.amount) }
   end
 
 	def update_status
@@ -95,8 +93,8 @@ class Order < ActiveRecord::Base
   def charge(token)
     if payment_type == 'credit'
       begin
-        charge = Stripe::Charge.create(
-          :amount => total, # amount in cents, again
+        charge = Stripe::Charge.create!(
+          :amount => 1000, # amount in cents, again
           :currency => "usd",
           :card => token,
           :description => user.email

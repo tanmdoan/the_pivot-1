@@ -13,12 +13,10 @@
     <dt><strong>Address:</strong></dt>
     <dd><%= @order.address %></dd>
   <% end %>
-  <dt><strong>Items:</strong></dt>
-  <% @order.order_items.each do |order_item| %>
-    <dd><%= link_to order_item.item_title, item_path(order_item.item) %> |
-    Quantity: <%= order_item.quantity %> |
-    Unit Price: <%= order_item.unit_price_dollars %> |
-    Subtotal: <%= order_item.subtotal %><br/></dd>
+  <dt><strong>Loans:</strong></dt>
+  <% @order.order_loans.each do |order_loan| %>
+    <dd><%= link_to order_loan.loan.title, loan_path(order_loan.loan) %> |
+    Unit Price: <%= order_loan.loan.unit_price_dollars %> |
   <% end %><br/>
   <dt><strong>Order Status:</strong></dt>
   <dd><%= @order.status %></dd>
