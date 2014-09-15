@@ -18,7 +18,7 @@ class CartsController < ApplicationController
           flash[:success] = 'Updated quantity for loan.'
         end
       else
-        flash[:success] = "'#{loan.title}' has been removed from your cart."
+        flash[:success] = "You will not contribute to '#{loan.title}'."
         redirect_to cart_path
         return
       end
@@ -33,7 +33,7 @@ class CartsController < ApplicationController
     loan = Loan.find_by(id: params[:cart][:loan_id])
     current_cart.delete(loan.id)
 
-    flash[:success] = "'#{loan.title}' has been removed from your cart."
+    flash[:success] = "You will not contribute to '#{loan.title}'."
     redirect_to cart_path
   end
 end
