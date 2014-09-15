@@ -24,6 +24,9 @@ watts = User.create(first_name: "Watts", last_name: "Watkins", email: "demo+watt
 hilary = User.create(first_name: "Hil", last_name: "Denton", email: "something@jumpstartlab.com",
   password: "password", password_confirmation: "password", role: "borrower", nickname: 'hildawg')
 
+lender = User.create(first_name: "Lender", last_name: "McLender", email: "lender@keevaah.com",
+  password: "password", password_confirmation: "password", role: "lender", nickname: 'hildawg')
+
 
 rachel_address1 = Address.create(street: '1510 Blake St', city: 'Denver', state: 'CO', zip: '80205', user: rachel)
 rachel_address2 = Address.create(street: '198 Araphoe St', city: 'Denver', state: 'CO', zip: '80205', user: rachel)
