@@ -12,7 +12,7 @@
   </div>
 <% end %>
 
-<!-- Show cart items summary -->
+<!-- Show cart loans summary -->
 <div class="row">
   <div class="col-md-1">
   </div>
@@ -22,16 +22,13 @@
       <table class="table table-striped order-table">
         <tr>
           <th>Title</th>
-          <th>Quantity</th>
-          <th>Unit Price</th>
+          <th>Amount</th>
           <th>Subtotal</th>
         </tr>
-        <% @items.each do |item| %>
+        <% @loans.each do |loan| %>
           <tr>
-            <td><%= item.title %></td>
-            <td><%= item_quantity(item.id) %></td>
-            <td><%= item.unit_price_dollars %></td>
-            <td><%= item_subtotal(item.id, item.price) %></td>
+            <td><%= loan.title %></td>
+            <td><%= loan.unit_price_dollars %></td>
           </tr>
         <% end %>
         <tr>
@@ -168,11 +165,11 @@
   </div>
 <% end %>
 
-<!-- 
-Order schema: 
-user_id 
+<!--
+Order schema:
+user_id
 order_type => pickup/if delivery, has address_id
 address_id => selected/created here
 status		 => if cash: ordered, if card: paid
-total 
+total
 -->

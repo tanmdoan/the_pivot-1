@@ -6,7 +6,7 @@ class OrdersController < ApplicationController
   end
 
   def show
-    @order = current_user.orders.includes([:order_items, :items]).find_by(id: params[:id])
+    @order = current_user.orders.includes([:order_loans, :loans]).find_by(id: params[:id])
 
     if @order
       @order = @order.decorate
@@ -21,22 +21,22 @@ class OrdersController < ApplicationController
     else
       @order = Order.new
       @order.address = Address.new
-      @items = Item.where(id: current_cart.keys).decorate
+      @loans = Loan.where(id: current_cart.keys).decorate
       @addresses = current_user.addresses.decorate
     end
   end
 
   def create
-    @order = current_user.orders.new_with_items(merged_params, current_cart)
+    @order = current_user.orders.new_with_loans(merged_params, current_cart)
 
-    if @order.charge(params[:stripeToken]) && @order.save
+    if @order.charge(params[:stripeToken]) && @order.save!
       current_cart.clear
       CartSession.new(session).clear
       flash[:success] = 'Your order has been received.'
       redirect_to order_path(@order)
     else
       @addresses = current_user.addresses.decorate
-      @items = Item.where(id: session[:cart].keys).decorate
+      @loans = Loan.where(id: session[:cart].keys).decorate
       render :new
     end
   end
