@@ -23,11 +23,14 @@ describe 'when viewing the loans' do
       # loan_contribution = LoanContribution.create(contribution_id: contribution.id, loan_id: loan.id)
 		end
 
+# contributions mean that less money is needed to fulfill a loan
+# can only make a contribution if the amount is less than what is owed
+# cannot contribute more than requested for loan
+# can only contribute to loans with status request
+
 		it 'can make a contribution to a loan' do
 			visit categories_path
 			click_on "Loan Now"
-
-			save_and_open_page
 		end
 
 		xit 'can edit an order' do
