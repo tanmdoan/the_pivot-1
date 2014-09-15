@@ -12,11 +12,22 @@
 
 <div id="current_loans">
   <h3>Loans:</h3>
-  <% @loans.each do |loan| %>
-    <tr>
-      <td><%= link_to loan.title, borrower_loan_path(loan) %></td>
-      <td><%= loan.description %></td>
-      <td><%= loan.amount %></td>
-    </tr>
-  <% end %>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Amount</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @loans.each do |loan| %>
+        <tr>
+          <td><%= link_to loan.title, borrower_loan_path(loan) %></td>
+          <td><%= loan.description %></td>
+          <td><%= loan.amount_in_dollars %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 </div>
