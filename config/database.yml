@@ -1,0 +1,23 @@
+development:
+  adapter: postgresql
+  encoding: unicode
+  database: keeva_development
+  pool: 5
+  username: Persistence
+  password:
+
+test:
+  adapter: postgresql
+  encoding: unicode
+  database: keeva_test
+  pool: 5
+  username: Persistence
+  password:
+
+production:
+  adapter: postgresql
+  encoding: unicode
+  database: keeva_production
+  pool: 5
+  username: Persistence
+  password:
