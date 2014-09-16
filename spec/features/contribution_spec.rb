@@ -29,7 +29,7 @@ describe 'when viewing the loans' do
 # can only contribute to loans with status request
 
 		it 'can choose a loan and make a contribution to it' do
-			visit categories_path
+			visit loans_path
 			click_on "Loan Now"
 		end
 

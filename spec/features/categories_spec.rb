@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'when viewing the categories' do
+xdescribe 'when viewing the categories' do
 	context 'as a guest' do
 
 		let(:category) { Category.create(id: 1,
@@ -21,7 +21,7 @@ describe 'when viewing the categories' do
 			category
 			loan_category
 			loan
-			visit categories_path
+			visit loans_path
 		end
 
 

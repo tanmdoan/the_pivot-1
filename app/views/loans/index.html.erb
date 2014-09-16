@@ -21,6 +21,17 @@
           </div>
     <% end %>
 
+    <%- @loans.each do |loan| %>
+      <dl class="dl-horizontal">
+        <dd><%= loan.user.name %></dd>
+        <dd><%= link_to "#{loan.title}", loan_path(loan) %></dd>
+        <dd><%= loan.description %></dd>
+        <dd>$<%= loan.amount %></dd>
+        <%= link_to "Donate", "#" %>
+      </dl>
+    <%- end %>
+
+
 
     <script>
     $().ready(function() {
