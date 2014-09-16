@@ -1,14 +1,47 @@
-<%- model_class = Loan -%>
-<div class="page-header">
-  <h1>Loans</h1>
-</div>
+<%= search_form_for @q do |f| %>
+  <%= f.search_field :title_or_description_cont %>
+  <%= f.submit %>
+<% end %>
+<div class="col-md-12">
+  <ul class="nav nav-tabs" role="tablist">
+    <% @categories.each_with_index do |category, i| %>
+      <li class="<%= i==0 ? 'active' : '' %>">
+        <a class="tab-control" href="#tab-<%=i + 1 %>"><%= category.name%></a>
+      </li>
+    <% end %>
+  </ul>
+    <% @categories.each_with_index do |category, i| %>
+          <div class="tab-panel<%= i==0 ? ' active' : ''%>" id="tab-<%= i+1 %>">
+            <div class="loans transitions-enabled">
+              <%= render partial: 'loan_box', collection: @loans_by_category[category.name], as: :loan %>
+            </div>
+          </div>
+    <% end %>
 
-<%- @loans.each do |loan| %>
-  <dl class="dl-horizontal">
-    <dd><%= loan.user.name %></dd>
-    <dd><%= link_to "#{loan.title}", loan_path(loan) %></dd>
-    <dd><%= loan.description %></dd>
-    <dd>$<%= loan.amount %></dd>
-    <%= link_to "Donate", "#" %>
-  </dl>
-<%- end %>
+
+    <script>
+    $().ready(function() {
+      $('.nav-tabs').each(function(){
+        var $this  = $(this);
+        var $tab   = $this.find('li.active');
+        var $link  = $tab.find("a");
+        var $panel = $($link.attr("href"));
+
+
+        $this.on("click", ".tab-control", function(e) {
+          e.preventDefault();
+          var $link = $(this);
+          var id    = this.hash;
+
+          if (id && !$link.is(".active")){
+            $panel.removeClass('active');
+            $tab.removeClass('active');
+
+            $panel = $(id).addClass('active');
+            $tab   = $link.parent().addClass('active');
+          }
+        });
+      });
+    });
+    </script>
+</div>
