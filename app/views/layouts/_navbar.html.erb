@@ -12,6 +12,12 @@
 	      <a id="mini-keevahh-logo" class="navbar-brand" href="/"><img src="/assets/kevah.png" class="brand" height="40px" width="40px" /></a>
 	      <a class="navbar-brand brand-text" href="/">Keevahh</a>
 	    </div>
+			<div class="search-bar">
+				<%= search_form_for @q do |f| %>
+					<%= f.search_field :title_or_description_cont %>
+					<span class="glyphicon glyphicon-search"></span>
+				<% end %>
+			</div>
 	    <!-- Collect the nav links, forms, and other content for toggling -->
 	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 	      <ul class="nav navbar-nav navbar-right">
