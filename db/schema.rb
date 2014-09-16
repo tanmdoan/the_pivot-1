@@ -64,7 +64,7 @@ ActiveRecord::Schema.define(version: 20140914182148) do
 
   create_table "loans", force: true do |t|
     t.string   "title"
-    t.string   "description"
+    t.text     "description"
     t.integer  "amount"
     t.date     "requested_by"
     t.date     "repayments_begin"
