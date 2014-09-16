@@ -1,132 +1,25 @@
+require_relative './seed/borrower_seeds'
+require_relative './seed/loan_seeds'
+
 # CATEGORIES
-Category.create(name: "Agriculture")
-Category.create(name: "Small Business")
-Category.create(name: "Infastructure")
-Category.create(name: "Refugee")
-Category.create(name: "Women Owned Businesses")
-Category.create(name: "Parents")
+Category.create(id: 1, name: "Agriculture")
+Category.create(id: 2, name: "Small Business")
+Category.create(id: 3, name: "Education")
+Category.create(id: 4, name: "Women Owned Businesses")
+Category.create(id: 5, name: "Conflict Areas")
+Category.create(id: 6, name: "Shelter")
 
 
 #Moms Favs
 
 # USERS
-rachel = User.create(first_name: "Rachel", last_name: "Warbelow", email: "demo+rachel@jumpstartlab.com",
-  password: "password", password_confirmation: "password", role: :default)
-jeff = User.create(first_name: "Jeff", last_name: "Casimir", email: "demo+jeff@jumpstartlab.com",
-  password: "password", password_confirmation: "password", role: :default, nickname: 'j3')
-jorge = User.create(first_name: "Jorge", last_name: "Tellez", email: "demo+jorge@jumpstartlab.com",
-  password: "password", password_confirmation: "password", role: :default, nickname: 'novohispano')
-josh = User.create(first_name: "Josh", last_name: "Cheek", email: "demo+josh@jumpstartlab.com",
-  password: "password", password_confirmation: "password", role: :borrower, nickname: 'josh')
-watts = User.create(first_name: "Watts", last_name: "Watkins", email: "demo+watts@jumpstartlab.com",
-  password: "password", password_confirmation: "password", role: "borrower", nickname: 'watts')
+users.each do |user|
+  User.create(user)
+end
 
-hilary = User.create(first_name: "Hil", last_name: "Denton", email: "something@jumpstartlab.com",
-  password: "password", password_confirmation: "password", role: "borrower", nickname: 'hildawg')
-
-lender = User.create(first_name: "Lender", last_name: "McLender", email: "lender@keevaah.com",
-  password: "password", password_confirmation: "password", role: "lender", nickname: 'hildawg')
-
-
-rachel_address1 = Address.create(street: '1510 Blake St', city: 'Denver', state: 'CO', zip: '80205', user: rachel)
-rachel_address2 = Address.create(street: '198 Araphoe St', city: 'Denver', state: 'CO', zip: '80205', user: rachel)
-jeff_address1 = Address.create(street: '3273 Lawrence St', city: 'Denver', state: 'CO', zip: '80205', user: jeff)
-jeff_address2 = Address.create(street: '98 California St', city: 'Denver', state: 'CO', zip: '80205', user: jeff)
-rachel_address3 = Address.create(street: '101 Stout St', city: 'Denver', state: 'CO', zip: '80205', user: rachel)
-jorge_address = Address.create(street: '23 Colfax Ave', city: 'Denver', state: 'CO', zip: '80205', user: jorge)
-
-users = User.all
-50.times do
-  Loan.create( title: "Loan 1", amount: 24000,
-   description: "Integer vel justo felis.",
-   requested_by: "December 6, 2014",
-   repayments_begin: "February 4, 2015",
-   monthly_payment: 150,
-   category_ids: ["1"],
-   user_id: 4)
-  Loan.create( title: "Loan 2", amount: 500000,
-   description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vel justo felis.",
-   requested_by: "December 6, 2014",
-   repayments_begin: "February 4, 2015",
-   monthly_payment: 150,
-   category_ids: ["1", "4"],
-   user_id: 6)
-  Loan.create( title: "Loan 3", amount: 19000,
-   description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-   requested_by: "December 6, 2014",
-   repayments_begin: "February 4, 2015",
-   monthly_payment: 150,
-   category_ids: ["1"],
-   user_id: 5)
-
-  #Lore
-  Loan.create( title: "Loan 4", amount: 75000,
-   description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vel justo felis.",
-   requested_by: "December 6, 2014",
-   repayments_begin: "February 4, 2015",
-   monthly_payment: 150,
-   category_ids: ["2"],
-   user_id: 4)
-  Loan.create( title: "Loan 5", amount: 250000,
-   description: "Lorem ipsum dolor sit amet.",
-   requested_by: "December 6, 2014",
-   repayments_begin: "February 4, 2015",
-   monthly_payment: 150,
-   category_ids: ["2","5"],
-   user_id: 4)
-  Loan.create( title: "Loan 6", amount: 25000,
-   description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-   requested_by: "December 6, 2014",
-   repayments_begin: "February 4, 2015",
-   monthly_payment: 150,
-   category_ids: ["2"],
-   user_id: 4)
-
-  #Afford Expensive
-  Loan.create( title: "Loan 7", amount: 177000,
-   description: "Consectetur adipiscing elit. Integer vel justo felis.",
-   requested_by: "December 6, 2014",
-   repayments_begin: "February 4, 2015",
-   monthly_payment: 150,
-   category_ids: ["3", "2"],
-   user_id: 5)
-  Loan.create( title: "Loan 8", amount: 67500,
-   description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-   requested_by: "December 6, 2014",
-   repayments_begin: "February 4, 2015",
-   monthly_payment: 150,
-   category_ids: ["3","5"],
-   user_id: 6)
-  Loan.create( title: "Loan 9", amount: 89100,
-   description: "Integer vel justo felis.",
-   requested_by: "December 6, 2014",
-   repayments_begin: "February 4, 2015",
-   monthly_payment: 150,
-   category_ids: ["3"],
-   user_id: 4)
-
-  #Above you
-  Loan.create( title: "Loan 10", amount: 9800,
-   description: "Lorem ipsum dolor sit amet.",
-   requested_by: "December 6, 2014",
-   repayments_begin: "February 4, 2015",
-   monthly_payment: 150,
-   category_ids: ["3", "4"],
-   user_id: 5)
-  Loan.create( title: "Loan 11", amount: 25000,
-   description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vel justo felis.",
-   requested_by: "December 6, 2014",
-   repayments_begin: "February 4, 2015",
-   monthly_payment: 150,
-   category_ids: ["4"],
-   user_id: 6)
-  Loan.create( title: "Loan 12", amount: 620000,
-   description: "Integer vel justo felis.",
-   requested_by: "December 6, 2014",
-   repayments_begin: "February 4, 2015",
-   monthly_payment: 150,
-   category_ids: ["4", "1"],
-   user_id: 6)
+# LOANS
+loans.each do |loan|
+  Loan.create(loan)
 end
 
 #ORDERS
