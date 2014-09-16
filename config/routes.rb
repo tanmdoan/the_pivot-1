@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  root to: 'categories#index'
+  root to: 'loans#index'
 
   get '/login',  to: 'sessions#new'
   post '/login', to: 'sessions#create'
