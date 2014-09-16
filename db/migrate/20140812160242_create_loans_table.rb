@@ -2,7 +2,7 @@ class CreateLoansTable < ActiveRecord::Migration
   def change
     create_table :loans do |t|
       t.string :title
-      t.string :description
+      t.text :description
       t.integer :amount
       t.date :requested_by
       t.date :repayments_begin
