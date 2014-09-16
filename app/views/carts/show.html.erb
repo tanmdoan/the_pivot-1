@@ -13,7 +13,7 @@
         <% @loans.each do |loan| %>
           <tr>
             <td><%= loan.title %></td>
-            <td><%= loan.unit_price_dollars %></td>
+            <td><%= current_cart.contribution.amount %></td>
             <td>
               <%= form_for(:cart, url: cart_path, method: :delete) do |f| %>
                 <%= f.hidden_field :loan_id, value: loan.id %>

@@ -3,27 +3,32 @@ class CartsController < ApplicationController
     @loans = Loan.where(id: current_cart.keys).decorate
   end
 
+  # def new
+  #   loan_id = params[:cart][:loan_id]
+  #   amount = params[:cart][:amount].to_i
+  #   user_id = current_user.id
+  #
+  #   contribution = Contribution.new(loan_id: loan_id, amount: amount, user_id: user_id)
+  #
+  #   if contribution.save
+  #     flash[:success] = 'Added to your cart. (You\'re a good person)'
+  #   else
+  #     flash[:success] = 'Sorry, buster.'
+  #   end
+  # end
+
   def update
     loan_id = params[:cart][:loan_id]
-    quantity = params[:cart][:quantity].to_i
+    amount = params[:cart][:amount].to_i
+    user_id = current_user.id
 
-    if loan = Loan.find_by(id: loan_id, aasm_state: 'request')
-      current_cart.store(loan_id, quantity)
-      current_cart.save
+    contribution = Contribution.new(loan_id: loan_id, amount: amount, user_id: user_id)
 
-      if current_cart.quantity(loan_id) > 0
-        if current_cart.new?(loan_id)
-          flash[:success] = 'Added to your cart. (You can afford that?)'
-        else
-          flash[:success] = 'Updated quantity for loan.'
-        end
-      else
-        flash[:success] = "You will not contribute to '#{loan.title}'."
-        redirect_to cart_path
-        return
-      end
+    if contribution.that_shits_ok?
+      contribution.save
+      current_cart << contribution
     else
-      flash[:error] = 'That loan is no longer available.'
+      flash[:success] = 'Your contribution exceeds the loan amount left!'
     end
 
     redirect_to :back

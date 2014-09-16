@@ -60,15 +60,12 @@ describe 'Shopping Contributions', type: :feature do
     expect(page).to_not have_content '500.00'
   end
 
-  xit 'can change the contribution amount' do
+  it 'the contribution amount defaults to $25.00' do
     visit categories_path
     first(:button, 'Loan Now').click
     click_link 'View Contributions'
 
-    within('form.increment') {
-      click_button '+'
-    }
+    expect(page).to have_content "25.00"
 
-    within('td.quantity') { expect(page).to have_content '2' }
   end
 end

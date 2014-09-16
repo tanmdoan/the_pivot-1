@@ -27,7 +27,7 @@ class OrdersController < ApplicationController
   end
 
   def create
-    @order = current_user.orders.new_with_loans(merged_params, current_cart)
+    @order = current_user.orders.new_with_loans(current_cart)
 
     if @order.charge(params[:stripeToken]) && @order.save!
       current_cart.clear
@@ -54,15 +54,16 @@ class OrdersController < ApplicationController
 
   private
 
-  def order_params
-    params.require(:order).permit(:order_type, :payment_type, :address_id, address_attributes: [:street, :unit, :city, :state, :zip])
-  end
+  # def order_params
+  #   # params.require(:order).permit(:order_type, :address_id, address_attributes: [:street, :unit, :city, :state, :zip])
+  # end
+  #
+  # def merged_params
+  #   adjusted_params = order_params
+  #   if adjusted_params['address_attributes']
+  #     adjusted_params['address_attributes']['user_id'] = current_user.id
+  #   end
+  #   adjusted_params
+  # end
 
-  def merged_params
-    adjusted_params = order_params
-    if adjusted_params['address_attributes']
-      adjusted_params['address_attributes']['user_id'] = current_user.id
-    end
-    adjusted_params
-  end
 end

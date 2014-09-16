@@ -9,8 +9,6 @@ RSpec.describe Order, type: :model  do
 
 	it { should validate_presence_of(:user_id) }
 
-	it { should validate_presence_of(:order_type) }
-
 	it 'has an array of order loans' do
 		expect(order.order_loans).to eq([])
 	end

@@ -15,8 +15,8 @@ class Order < ActiveRecord::Base
   scope :cancelled, -> { user_and_oi.where(status: 'cancelled') }
   scope :current_orders, ->(user) { includes(:order_loans).where(user: user) }
 
-  def self.new_with_loans(params, cart)
-    order = new(params)
+  def self.new_with_loans(cart)
+    order = new#(params)
     loans = Loan.where(id: cart.keys)
     cart.each do |loan, quantity|
       order.order_loans.new(loan_id: loan)
