@@ -19,6 +19,11 @@ $body-bg: #F8F8FF;
 	margin-top: 20px;
 	box-shadow: 10px 10px 5px #888;
 }
+.search-bar {
+  padding: 21.5px 489px;
+  font-size: 18px;
+  line-height: 20px;
+}
 
 // NAVBAR //
 
@@ -57,13 +62,6 @@ $navbar-inverse-brand-color: #000;
   margin-top: -10px;
 }
 
-.search-bar {
-  float: left;
-  padding: 22.5px 155px;
-  font-size: 18px;
-  line-height: 20px;
-  height: 75px;
-}
 
 // LOGIN / REGISTER //
 .login-reg-page {

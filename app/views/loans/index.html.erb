@@ -1,4 +1,11 @@
 <div class="col-md-12">
+  <div class="search-bar">
+    <%= search_form_for @q do |f| %>
+      <%= f.search_field :title_or_description_cont %>
+      <span class="glyphicon glyphicon-search"></span>
+    <% end %>
+  </div>
+
   <ul class="nav nav-tabs" role="tablist">
     <% @categories.each_with_index do |category, i| %>
       <li class="<%= i==0 ? 'active' : '' %>">

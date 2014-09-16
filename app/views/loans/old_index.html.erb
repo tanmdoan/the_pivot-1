@@ -2,10 +2,6 @@
 <div class="page-header">
   <h1>Loans</h1>
 </div>
-<%= search_form_for @q do |f| %>
-  <%= f.search_field :title_or_description_cont %>
-  <%= f.submit %>
-<% end %>
 <%- @loans.each do |loan| %>
   <dl class="dl-horizontal">
     <dd><%= loan.user.name %></dd>
