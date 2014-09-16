@@ -9,6 +9,7 @@ class CreateLoansTable < ActiveRecord::Migration
       t.integer :monthly_payment
       t.attachment :image
       t.string :aasm_state
+      t.integer :user_id
 
       t.timestamps
     end
